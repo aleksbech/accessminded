@@ -8,6 +8,7 @@ const POINTS = [
   { textKey: "about_point_1" },
   { textKey: "about_point_3" },
   { textKey: "about_point_4" },
+  { textKey: "about_point_5" },
 ] as const
 
 export function AboutSection() {
@@ -62,7 +63,7 @@ export function AboutSection() {
                     <Check className="h-3.5 w-3.5 text-primary" strokeWidth={3} />
                   </span>
 
-                  <span>{t(point.textKey) && ` — ${t(point.textKey)}`}</span>
+                  <span>{t(point.textKey) && `${t(point.textKey)}`}</span>
                 </li>
               ))}
             </ul>
