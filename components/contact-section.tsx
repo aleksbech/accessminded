@@ -103,7 +103,8 @@ export function ContactSection() {
                   <span className="font-bold">{t("contact_email_label")}: </span>
                   <a
                     href="mailto:hello@accessminded.com"
-                    className="rounded-md text-primary underline underline-offset-4 transition-shadow"
+                    className="inline-flex items-center rounded-none px-1 py-0.5 leading-none text-primary underline underline-offset-4"
+                    style={{ borderRadius: "6px" }}
                   >
                     {t("contact_email_value")}
                   </a>
@@ -294,7 +295,8 @@ export function ContactSection() {
                     <a
                       id="privacyHint"
                       href="#privacy-policy"
-                      className="w-fit rounded-md text-xs text-primary underline underline-offset-4 transition-shadow"
+                      className="inline-flex items-center self-start whitespace-nowrap px-2 py-0.5 text-xs leading-none text-primary underline underline-offset-4"
+                      style={{ borderRadius: "8px", width: "fit-content" }}
                     >
                       {t("f_priv_link")}
                     </a>

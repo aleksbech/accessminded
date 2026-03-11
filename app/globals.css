@@ -93,8 +93,9 @@
   [role="checkbox"],
   [aria-controls]
 ):focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus);
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 :where(
@@ -103,19 +104,22 @@
   select,
   [data-slot="select-trigger"]
 ):is(:focus, :focus-visible) {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--focus);
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 :where([data-slot="select-item"]):is(:focus, :focus-visible),
 :where([data-slot="select-item"])[data-highlighted] {
-  outline: none;
-  box-shadow: inset 0 0 0 3px var(--focus);
+  outline: 3px solid var(--focus);
+  outline-offset: -2px;
+  border-radius: 6px;
 }
 
 /* Error state should stay visible without creating a second focus ring */
 :where(input, textarea, select, [data-slot="select-trigger"])[aria-invalid="true"]:is(:focus, :focus-visible) {
-  box-shadow: 0 0 0 3px var(--focus);
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 
 /* Smooth scrolling */

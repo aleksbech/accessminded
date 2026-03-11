@@ -63,6 +63,8 @@ export const dict: Record<Lang, Record<string, string>> = {
     about_point_4: "Szkolenia: TestArmy Testy dostępności oraz Audytowanie dostępności stron internetowych zgodnie z WCAG",
     about_point_5: "Praktyczne doświadczenie w przeprowadzaniu audytów dostępności",
     about_cta_contact: "Napisz do mnie",
+    contact_name_label: "Imię i nazwisko",
+    contact_name_value: "Aleksandra Bech",
 
     faq_title: "FAQ",
     faq_q1: "Ile trwa audyt?",
@@ -181,6 +183,8 @@ export const dict: Record<Lang, Record<string, string>> = {
     about_point_4: "Training: TestArmy Accessibility Testing and Auditing Website Accessibility according to WCAG",
     about_point_5: "Hands-on experience conducting accessibility audits",
     about_cta_contact: "Contact me",
+    contact_name_label: "Full name",
+    contact_name_value: "Aleksandra Bech",
 
     faq_title: "FAQ",
     faq_q1: "How long does an audit take?",

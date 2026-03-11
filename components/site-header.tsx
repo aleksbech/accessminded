@@ -96,7 +96,7 @@ export function SiteHeader() {
               <li key={item.key}>
                 <a
                   href={item.href}
-                  className="inline-flex items-center rounded-xl border border-transparent px-3 py-2 text-sm font-bold text-foreground transition-colors hover:border-border hover:bg-foreground/[0.03]"
+                  className="inline-flex items-center rounded-md border border-transparent px-3 py-2 text-sm font-bold text-foreground transition-colors hover:border-border hover:bg-foreground/[0.03]"
                 >
                   {t(item.key)}
                 </a>

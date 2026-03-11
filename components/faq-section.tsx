@@ -67,7 +67,7 @@ export function FaqSection() {
                     id={panelId}
                     role="region"
                     aria-labelledby={triggerId}
-                    className="px-4 pb-4"
+                    className="px-4 pb-4 pt-4"
                   >
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {t(item.aKey)}
