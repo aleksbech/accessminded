@@ -82,6 +82,22 @@
   outline: none;
 }
 
+@layer base {
+  :where(
+    a[href],
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+    outline: 3px solid color-mix(in oklab, var(--ring) 70%, transparent);
+    outline-offset: 3px;
+    box-shadow: none;
+  }
+}
+
 /* One consistent focus treatment across interactive elements */
 :where(
   a,
@@ -91,29 +107,21 @@
   [role="link"],
   [role="radio"],
   [role="checkbox"],
-  [aria-controls]
-):focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
-  border-radius: 6px;
-}
-
-:where(
+  [aria-controls],
   input,
   textarea,
   select,
   [data-slot="select-trigger"]
-):is(:focus, :focus-visible) {
-  outline: 3px solid var(--focus);
+):is(:focus-visible, :focus) {
+  outline: 4px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 6px;
 }
 
-:where([data-slot="select-item"]):is(:focus, :focus-visible),
+/* Menu / select items */
+:where([data-slot="select-item"]):is(:focus-visible, :focus),
 :where([data-slot="select-item"])[data-highlighted] {
-  outline: 3px solid var(--focus);
+  outline: 4px solid var(--focus);
   outline-offset: -2px;
-  border-radius: 6px;
 }
 
 /* Error state should stay visible without creating a second focus ring */
@@ -168,7 +176,6 @@ html {
 .logo-link:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--focus);
-  border-radius: 18px;
 }
 
 .faq-trigger:focus {
