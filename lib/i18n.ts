@@ -79,7 +79,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     contact_title: "Kontakt",
     contact_body: "Napisz krótko, co chcesz poddać audytowi i jaki masz termin. Wrócę do Ciebie z propozycją.",
     contact_email_label: "E-mail",
-    contact_email_value: "hello@accessminded.com",
+    contact_email_value: "aleksandra.bech@gmail.com",
     contact_response_label: "Czas odpowiedzi",
     contact_response_value: "Do 48 h w dni robocze",
     contact_lang_label: "Języki",
@@ -128,7 +128,7 @@ export const dict: Record<Lang, Record<string, string>> = {
       "Niniejsza polityka prywatności określa zasady przetwarzania danych osobowych oraz wykorzystywania plików cookies na stronie Access Minded.",
     pp_admin_title: "Administrator danych",
     pp_admin_text:
-      "Administratorem danych jest Access Minded. W sprawach związanych z ochroną danych można skontaktować się pod adresem: hello@accessminded.com.",
+      "Administratorem danych osobowych jest Aleksandra Bech, prowadząca stronę internetową Access Minded. W sprawach związanych z ochroną danych można skontaktować się pod adresem: aleksandra.bech@gmail.com.",
     pp_scope_title: "Zakres przetwarzanych danych",
     pp_scope_text:
       "Dane mogą być przetwarzane w celu kontaktu, odpowiedzi na zapytania oraz poprawy działania strony.",
@@ -215,7 +215,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     contact_title: "Contact",
     contact_body: "Briefly describe what you would like to audit and your timeline. I will respond with a proposed scope.",
     contact_email_label: "Email",
-    contact_email_value: "hello@accessminded.com",
+    contact_email_value: "aleksandra.bech@gmail.com",
     contact_response_label: "Response time",
     contact_response_value: "Within 48 hours on business days",
     contact_lang_label: "Languages",
@@ -261,8 +261,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     pp_intro:
       "This privacy policy describes the rules for processing personal data and the use of cookies on the Access Minded website.",
     pp_admin_title: "Data Controller",
-    pp_admin_text:
-      "The data controller is Access Minded. For matters related to data protection, please contact: hello@accessminded.com.",
+    pp_admin_text: "The data controller is Aleksandra Bech, the owner of the Access Minded website. For matters related to data protection, please contact: aleksandra.bech@gmail.com.",
     pp_scope_title: "Scope of data processing",
     pp_scope_text:
       "Data may be processed for contact purposes, responding to enquiries, and improving the operation of the website.",
