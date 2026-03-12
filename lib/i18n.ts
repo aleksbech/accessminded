@@ -34,7 +34,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     svc_audit_3: "Rekomendacje wdrożeniowe z przykładami.",
     svc_audit_4: "Raport i omówienie wyników z zespołem.",
     svc_reaudit_title: "Re-audyt",
-    svc_reaudit_1: "Weryfikacja wdroonych poprawek.",
+    svc_reaudit_1: "Weryfikacja wdrożonych poprawek.",
     svc_reaudit_2: "Aktualizacja raportu.",
     svc_reaudit_3: "Potwierdzenie naprawionych problemów.",
     svc_reaudit_4: "Doprecyzowanie zaleceń (jeśli potrzeba).",
