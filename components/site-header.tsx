@@ -86,7 +86,7 @@ export function SiteHeader() {
             width={200}
             height={50}
             priority
-            className="h-12 w-auto brightness-110 contrast-125 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]  sm:h-9 md:h-16"
+            className="h-14 w-auto brightness-110 contrast-125 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)] md:h-16"
           />
         </a>
 

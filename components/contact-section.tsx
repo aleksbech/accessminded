@@ -43,8 +43,9 @@ export function ContactSection() {
     return errs
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
     const formData = new FormData(e.currentTarget)
     const errs = validate(formData)
 
@@ -58,12 +59,46 @@ export function ContactSection() {
     }
 
     setErrors({})
-    setSubmitted(true)
-    formRef.current?.reset()
-    setService("audit")
-    requestAnimationFrame(() => statusRef.current?.focus())
-  }
+    setSubmitted(false)
 
+    const payload = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      url: String(formData.get("url") || ""),
+      service: String(formData.get("service") || service),
+      message: String(formData.get("message") || ""),
+      privacy: Boolean(formData.get("privacy")),
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        setErrors({
+          message: result.error || "Nie udało się wysłać wiadomości.",
+        })
+        return
+      }
+
+      setSubmitted(true)
+      formRef.current?.reset()
+      setService("audit")
+      requestAnimationFrame(() => statusRef.current?.focus())
+    } catch (error) {
+      console.error("FORM SUBMIT ERROR:", error)
+      setErrors({
+        message: "Wystąpił błąd połączenia. Spróbuj ponownie.",
+      })
+    }
+  }
   const expectations = [
     t("contact_expect_1"),
     t("contact_expect_2"),
