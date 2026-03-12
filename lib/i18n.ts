@@ -105,6 +105,8 @@ export const dict: Record<Lang, Record<string, string>> = {
     f_submit: "Wyślij",
     f_success: "Wiadomość wysłana! Wrócę z odpowiedzią w ciągu 48 h.",
 
+
+
     f_err_name: "Uzupełnij imię i nazwisko.",
     f_err_email: "Podaj poprawny adres e-mail.",
     f_err_msg: "Wpisz wiadomość (min. 20 znaków).",
@@ -119,6 +121,20 @@ export const dict: Record<Lang, Record<string, string>> = {
     footer_copy: "Access Minded. Wszelkie prawa zastrzeżone.",
     footer_a11y: "Ta strona została zaprojektowana zgodnie z WCAG 2.2 (AA).",
     required: "wymagane",
+
+
+    pp_title: "Polityka prywatności",
+    pp_intro:
+      "Niniejsza polityka prywatności określa zasady przetwarzania danych osobowych oraz wykorzystywania plików cookies na stronie Access Minded.",
+    pp_admin_title: "Administrator danych",
+    pp_admin_text:
+      "Administratorem danych jest Access Minded. W sprawach związanych z ochroną danych można skontaktować się pod adresem: hello@accessminded.com.",
+    pp_scope_title: "Zakres przetwarzanych danych",
+    pp_scope_text:
+      "Dane mogą być przetwarzane w celu kontaktu, odpowiedzi na zapytania oraz poprawy działania strony.",
+    pp_rights_title: "Prawa użytkownika",
+    pp_rights_text:
+      "Użytkownik ma prawo dostępu do swoich danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania.",
   },
 
   en: {
@@ -225,6 +241,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     f_submit: "Send",
     f_success: "Message sent! I will get back to you within 48 hours.",
 
+
     f_err_name: "Please enter your full name.",
     f_err_email: "Please enter a valid email address.",
     f_err_msg: "Please enter a message (min. 20 characters).",
@@ -239,5 +256,20 @@ export const dict: Record<Lang, Record<string, string>> = {
     footer_copy: "Access Minded. All rights reserved.",
     footer_a11y: "This website was designed in accordance with WCAG 2.2 (AA).",
     required: "required",
+
+    pp_title: "Privacy Policy",
+    pp_intro:
+      "This privacy policy describes the rules for processing personal data and the use of cookies on the Access Minded website.",
+    pp_admin_title: "Data Controller",
+    pp_admin_text:
+      "The data controller is Access Minded. For matters related to data protection, please contact: hello@accessminded.com.",
+    pp_scope_title: "Scope of data processing",
+    pp_scope_text:
+      "Data may be processed for contact purposes, responding to enquiries, and improving the operation of the website.",
+    pp_rights_title: "User rights",
+    pp_rights_text:
+      "Users have the right to access their data, rectify it, erase it, or restrict its processing.",
+
+
   }
 }

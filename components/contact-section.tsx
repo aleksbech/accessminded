@@ -3,6 +3,7 @@
 import { useState, useRef } from "react"
 import { CheckCircle2 } from "lucide-react"
 import { useLang } from "./lang-provider"
+import Link from "next/link"
 
 import {
   Select,
@@ -323,18 +324,22 @@ export function ContactSection() {
                     aria-invalid={!!errors.privacy}
                     className="mt-0.5 h-5 w-5 shrink-0 rounded accent-primary transition-shadow"
                   />
+
                   <div className="grid gap-1">
                     <label htmlFor="privacy" className="text-sm font-bold text-foreground">
                       {t("f_priv_label")} <span className="text-primary" aria-hidden="true">*</span>
                     </label>
-                    <a
-                      id="privacyHint"
-                      href="#privacy-policy"
-                      className="inline-flex items-center self-start whitespace-nowrap px-2 py-0.5 text-xs leading-none text-primary underline underline-offset-4"
-                      style={{ borderRadius: "8px", width: "fit-content" }}
-                    >
-                      {t("f_priv_link")}
-                    </a>
+
+                    <p id="privacyHint" className="text-xs leading-relaxed text-muted-foreground">
+                      <Link
+                        href="/privacy-policy"
+                        className="inline-flex items-center self-start whitespace-nowrap px-2 py-0.5 text-xs leading-none text-primary underline underline-offset-4"
+                        style={{ borderRadius: "8px", width: "fit-content" }}
+                      >
+                        {t("f_priv_link")}
+                      </Link>
+                    </p>
+
                     {errors.privacy && (
                       <p id="errPriv" role="alert" className="text-xs font-bold text-destructive">
                         {errors.privacy}
@@ -342,7 +347,6 @@ export function ContactSection() {
                     )}
                   </div>
                 </div>
-
                 <button
                   type="submit"
                   className="inline-flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105"

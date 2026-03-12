@@ -6,12 +6,12 @@ import { Menu, X } from "lucide-react"
 import { useLang } from "./lang-provider"
 
 const NAV_ITEMS = [
-  { key: "nav_services", href: "#services" },
-  { key: "nav_process", href: "#process" },
-  { key: "nav_wcag", href: "#wcag" },
-  { key: "nav_about", href: "#about" },
-  { key: "nav_faq", href: "#faq" },
-  { key: "nav_contact", href: "#contact" },
+  { key: "nav_services", href: "/#services" },
+  { key: "nav_process", href: "/#process" },
+  { key: "nav_wcag", href: "/#wcag" },
+  { key: "nav_about", href: "/#about" },
+  { key: "nav_faq", href: "/#faq" },
+  { key: "nav_contact", href: "/#contact" },
 ] as const
 
 export function SiteHeader() {
@@ -76,7 +76,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-4 md:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8">
         <a
-          href="#top"
+          href="/"
           className="flex shrink-0 items-center rounded-2xl px-3 py-2 lg:justify-self-start"
           aria-label="Access Minded — home"
         >
@@ -135,7 +135,7 @@ export function SiteHeader() {
           </div>
 
           <a
-            href="#contact"
+            href="/#contact"
             className="hidden min-w-[10.5rem] justify-center rounded-2xl border border-primary/45 bg-primary px-4 py-2.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 sm:inline-flex"
           >
             {t("cta_nav")}
@@ -185,7 +185,7 @@ export function SiteHeader() {
             ))}
             <li>
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={closeMobile}
                 className="mt-2 flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-4 py-3 text-sm font-black text-primary-foreground sm:hidden"
               >
