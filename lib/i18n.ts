@@ -83,7 +83,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     contact_response_label: "Czas odpowiedzi",
     contact_response_value: "Do 48 h w dni robocze",
     contact_lang_label: "Języki",
-    contact_lang_value: "Polski i angielski",
+    contact_lang_value: "polski i angielski",
     contact_privacy_label: "Prywatność",
     contact_privacy_value: "Dane przetwarzane zgodnie z RODO",
     contact_callout: "Pierwsza konsultacja jest bezpłatna.",
@@ -103,7 +103,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     f_priv_label: "Zapoznałam/em się z polityką prywatności.",
     f_priv_link: "Przejdź do polityki prywatności",
     f_submit: "Wyślij",
-    f_success: "Wiadomość wysłana! Wrócę z odpowiedzią w ciągu 48 h.",
+    f_success: "Wiadomość wysłana! Wrócę z odpowiedzią w ciągu 48h.",
 
 
 
