@@ -4,11 +4,21 @@ import { LangProvider, useLang } from "@/components/lang-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
+function SkipLink() {
+    const { t } = useLang()
+    return (
+        <a className="skip-link" href="#content">
+            {t("skip_to_content")}
+        </a>
+    )
+}
+
 function PrivacyPolicyContent() {
     const { t } = useLang()
 
     return (
         <>
+            <SkipLink />
             <SiteHeader />
 
             <main

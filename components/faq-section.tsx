@@ -49,11 +49,6 @@ export function FaqSection() {
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    onPointerUp={(event) => {
-                      if (event.pointerType === "mouse") {
-                        event.currentTarget.blur()
-                      }
-                    }}
                   >
                     <span>{t(item.qKey)}</span>
                     <ChevronDown

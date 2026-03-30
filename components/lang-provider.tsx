@@ -11,12 +11,13 @@ interface LangContextValue {
 
 const LangContext = createContext<LangContextValue | null>(null)
 
-export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("pl")
+export function LangProvider({ children, initialLang = "pl" }: { children: ReactNode; initialLang?: Lang }) {
+  const [lang, setLangState] = useState<Lang>(initialLang)
 
   const setLang = useCallback((newLang: Lang) => {
     setLangState(newLang)
     document.documentElement.lang = newLang
+    document.cookie = `lang=${newLang};path=/;max-age=${60 * 60 * 24 * 365};SameSite=Lax`
   }, [])
 
   const t = useCallback(

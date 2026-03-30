@@ -8,8 +8,8 @@ import { useLang } from "./lang-provider"
 const NAV_ITEMS = [
   { key: "nav_services", href: "/#services" },
   { key: "nav_process", href: "/#process" },
-  { key: "nav_wcag", href: "/#wcag" },
   { key: "nav_about", href: "/#about" },
+  { key: "nav_training", href: "/szkolenia", plOnly: true },
   { key: "nav_faq", href: "/#faq" },
   { key: "nav_contact", href: "/#contact" },
 ] as const
@@ -74,10 +74,10 @@ export function SiteHeader() {
         background: "rgba(11,18,32,0.88)",
       }}
     >
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-4 md:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-2 px-4 py-4 md:gap-4 md:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8">
         <a
           href="/"
-          className="flex shrink-0 items-center rounded-2xl px-3 py-2 lg:justify-self-start"
+          className="flex min-w-0 shrink items-center rounded-2xl px-1 py-2 sm:px-3 lg:justify-self-start"
           aria-label="Access Minded — home"
         >
           <Image
@@ -86,13 +86,13 @@ export function SiteHeader() {
             width={200}
             height={50}
             priority
-            className="h-14 w-auto brightness-110 contrast-125 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)] md:h-16"
+            className="h-10 w-auto brightness-110 contrast-125 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)] sm:h-14 md:h-16"
           />
         </a>
 
         <nav className="hidden lg:block lg:justify-self-center" aria-label="Primary">
           <ul className="flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.filter((item) => !("plOnly" in item && item.plOnly && lang !== "pl")).map((item) => (
               <li key={item.key}>
                 <a
                   href={item.href}
@@ -107,6 +107,7 @@ export function SiteHeader() {
 
         <div className="flex shrink-0 items-center gap-3 lg:justify-self-end">
           <div
+            role="group"
             className="inline-flex items-center gap-1 rounded-xl border border-border bg-foreground/[0.02] p-1"
             aria-label={lang === "pl" ? "Wybor jezyka" : "Language selector"}
           >
@@ -172,7 +173,7 @@ export function SiteHeader() {
           aria-label="Mobile navigation"
         >
           <ul className="grid gap-1 px-4 py-3">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.filter((item) => !("plOnly" in item && item.plOnly && lang !== "pl")).map((item) => (
               <li key={item.key}>
                 <a
                   href={item.href}

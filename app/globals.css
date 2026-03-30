@@ -112,20 +112,20 @@
   textarea,
   select,
   [data-slot="select-trigger"]
-):is(:focus-visible, :focus) {
+):focus-visible {
   outline: 4px solid var(--focus);
   outline-offset: 2px;
 }
 
 /* Menu / select items */
-:where([data-slot="select-item"]):is(:focus-visible, :focus),
+:where([data-slot="select-item"]):focus-visible,
 :where([data-slot="select-item"])[data-highlighted] {
   outline: 4px solid var(--focus);
   outline-offset: -2px;
 }
 
 /* Error state should stay visible without creating a second focus ring */
-:where(input, textarea, select, [data-slot="select-trigger"])[aria-invalid="true"]:is(:focus, :focus-visible) {
+:where(input, textarea, select, [data-slot="select-trigger"])[aria-invalid="true"]:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
 }

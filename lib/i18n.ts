@@ -19,6 +19,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     hero_cta_primary: "Umów bezpłatną konsultację",
     hero_cta_secondary: "Jak pracuję",
     hero_hint: "Strona dostępna w języku polskim i angielskim.",
+    hero_badge: "Kluczowe korzyści",
 
     trust_label: "Dlaczego warto",
     trust_1: "Certyfikowany audyt WCAG 2.2",
@@ -76,6 +77,28 @@ export const dict: Record<Lang, Record<string, string>> = {
     faq_q4: "Co dostaje zespół po audycie?",
     faq_a4: "Raport z priorytetami i rekomendacjami oraz omówienie wyników, aby wdrożenie było szybkie i zrozumiałe.",
 
+    nav_training: "Szkolenia",
+    training_title: "Internet bez barier.",
+    training_subtitle: "Szkolenie z dostępności cyfrowej.",
+    training_badge: "Już wkrótce",
+    training_p1: "Zastanawiałeś się kiedyś, jak widzi Twoją stronę osoba niedowidząca? Albo jak porusza się po niej ktoś, kto nie używa myszki?",
+    training_p2: "Szykujemy dla Ciebie intensywną podróż po świecie dostępności cyfrowej. Połączymy teorię z praktyką, empatię z technologią, a na koniec pokażemy Ci, jak w tym wszystkim pomaga sztuczna inteligencja.",
+    training_p3: "Niezależnie od Twojej roli i doświadczenia \u2013 to szkolenie jest dla Ciebie.",
+    training_p4: "Wkrótce odsłonimy karty. Stay tuned.",
+    training_expect_title: "Co znajdziesz w szkoleniu?",
+    training_expect_1: "Praktyczne ćwiczenia na realnych przykładach",
+    training_expect_2: "Materiały szkoleniowe do wykorzystania po szkoleniu",
+    training_expect_3: "Certyfikat uczestnictwa",
+    training_notify_label: "Zostaw e-mail — dam Ci znać, gdy ruszą zapisy.",
+    training_notify_ph: "np. jan@firma.pl",
+    training_notify_submit: "Powiadom mnie",
+    training_notify_submitting: "Wysyłanie...",
+    training_notify_success: "Gotowe! Powiadomię Cię, gdy szkolenia będą dostępne.",
+    training_notify_err_email: "Podaj poprawny adres e-mail.",
+    training_notify_err_send: "Nie udało się zapisać. Spróbuj ponownie.",
+    training_cta: "Sprawdź szczegóły i zostaw e-mail",
+    training_cta_line2: "Szkolenie z dostępności cyfrowej już wkrótce.",
+
     contact_title: "Kontakt",
     contact_body: "Napisz krótko, co chcesz poddać audytowi i jaki masz termin. Wrócę do Ciebie z propozycją.",
     contact_email_label: "E-mail",
@@ -103,6 +126,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     f_priv_label: "Zapoznałam/em się z polityką prywatności.",
     f_priv_link: "Przejdź do polityki prywatności",
     f_submit: "Wyślij",
+    f_submitting: "Wysyłanie...",
     f_success: "Wiadomość wysłana! Wrócę z odpowiedzią w ciągu 48h.",
 
 
@@ -111,6 +135,9 @@ export const dict: Record<Lang, Record<string, string>> = {
     f_err_email: "Podaj poprawny adres e-mail.",
     f_err_msg: "Wpisz wiadomość (min. 20 znaków).",
     f_err_priv: "Zaznacz zgodę, aby kontynuować.",
+    f_err_connection: "Wystąpił błąd połączenia. Spróbuj ponownie.",
+    f_err_send: "Nie udało się wysłać wiadomości.",
+    f_service_hint: "Wybierz usługę, której dotyczy wiadomość.",
 
     f_name_ph: "np. Jan Kowalski",
     f_email_ph: "np. jan@firma.pl",
@@ -155,6 +182,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     hero_cta_primary: "Book a free consultation",
     hero_cta_secondary: "How I work",
     hero_hint: "This website is available in Polish and English.",
+    hero_badge: "Key benefits",
 
     trust_label: "Why choose me",
     trust_1: "Certified WCAG 2.2 audit training",
@@ -239,6 +267,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     f_priv_label: "I have read the privacy policy.",
     f_priv_link: "Go to privacy policy",
     f_submit: "Send",
+    f_submitting: "Sending...",
     f_success: "Message sent! I will get back to you within 48 hours.",
 
 
@@ -246,6 +275,9 @@ export const dict: Record<Lang, Record<string, string>> = {
     f_err_email: "Please enter a valid email address.",
     f_err_msg: "Please enter a message (min. 20 characters).",
     f_err_priv: "Please accept to continue.",
+    f_err_connection: "Connection error. Please try again.",
+    f_err_send: "Failed to send message.",
+    f_service_hint: "Choose the service your message is about.",
 
     f_name_ph: "e.g. Jane Doe",
     f_email_ph: "e.g. jane@company.com",

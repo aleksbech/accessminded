@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { CheckCircle2 } from "lucide-react"
 import { useLang } from "./lang-provider"
 import Link from "next/link"
@@ -21,12 +21,16 @@ interface FormErrors {
 }
 
 export function ContactSection() {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [service, setService] = useState<string>("audit")
+  const [mounted, setMounted] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
   const statusRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => { setMounted(true) }, [])
 
   function validate(form: FormData): FormErrors {
     const errs: FormErrors = {}
@@ -61,6 +65,7 @@ export function ContactSection() {
 
     setErrors({})
     setSubmitted(false)
+    setSubmitting(true)
 
     const payload = {
       name: String(formData.get("name") || ""),
@@ -84,7 +89,7 @@ export function ContactSection() {
 
       if (!response.ok) {
         setErrors({
-          message: result.error || "Nie udało się wysłać wiadomości.",
+          message: result.error || t("f_err_send"),
         })
         return
       }
@@ -96,8 +101,10 @@ export function ContactSection() {
     } catch (error) {
       console.error("FORM SUBMIT ERROR:", error)
       setErrors({
-        message: "Wystąpił błąd połączenia. Spróbuj ponownie.",
+        message: t("f_err_connection"),
       })
+    } finally {
+      setSubmitting(false)
     }
   }
   const expectations = [
@@ -203,6 +210,7 @@ export function ContactSection() {
                     type="text"
                     autoComplete="name"
                     required
+                    aria-required="true"
                     placeholder={t("f_name_ph")}
                     aria-describedby={errors.name ? "errName" : undefined}
                     aria-invalid={!!errors.name}
@@ -226,6 +234,7 @@ export function ContactSection() {
                     type="email"
                     autoComplete="email"
                     required
+                    aria-required="true"
                     placeholder={t("f_email_ph")}
                     aria-describedby={errors.email ? "errEmail" : undefined}
                     aria-invalid={!!errors.email}
@@ -257,37 +266,42 @@ export function ContactSection() {
                   </p>
                 </div>
 
-                {/* Service */}
-                <div className="grid gap-1.5">
+                {/* Service — suppressHydrationWarning avoids Radix Select's random aria-controls ID mismatch */}
+                <div className="grid gap-1.5" suppressHydrationWarning>
                   <label htmlFor="service" className="text-sm font-black text-foreground">
                     {t("f_service_label")}
                   </label>
                   {/* Hidden input so the value is included in FormData */}
                   <input type="hidden" name="service" value={service} />
 
-                  <Select value={service} onValueChange={setService}>
-                    <SelectTrigger
-                      id="service"
-                      aria-describedby="serviceHint"
-                      className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 pr-10 text-sm text-foreground transition-shadow"
+                  {mounted ? (
+                    <Select value={service} onValueChange={setService}>
+                      <SelectTrigger
+                        id="service"
+                        aria-describedby="serviceHint"
+                        className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 pr-10 text-sm text-foreground transition-shadow"
+                      >
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent
+                        position="popper"
+                        className="rounded-xl border-2 border-border bg-popover text-popover-foreground shadow-xl"
+                        sideOffset={8}
+                      >
+                        <SelectItem value="audit">{t("f_service_audit")}</SelectItem>
+                        <SelectItem value="reaudit">{t("f_service_reaudit")}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <div
+                      className="flex min-h-12 w-full items-center rounded-xl border-2 border-border bg-input px-4 py-3 pr-10 text-sm text-foreground"
+                      aria-hidden="true"
                     >
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent
-                      position="popper"
-                      // Use a solid background so text behind doesn't show through.
-                      // (bg-surface is intentionally translucent for cards, but dropdowns need opacity.)
-                      className="rounded-xl border-2 border-border bg-popover text-popover-foreground shadow-xl"
-                      sideOffset={8}
-                    >
-                      <SelectItem value="audit">{t("f_service_audit")}</SelectItem>
-                      <SelectItem value="reaudit">{t("f_service_reaudit")}</SelectItem>
-                    </SelectContent>
-                  </Select>
+                      {t("f_service_audit")}
+                    </div>
+                  )}
                   <p id="serviceHint" className="text-xs text-muted-foreground">
-                    {lang === "pl"
-                      ? "Wybierz usługę, której dotyczy wiadomość."
-                      : "Choose the service your message is about."}
+                    {t("f_service_hint")}
                   </p>
                 </div>
 
@@ -300,6 +314,7 @@ export function ContactSection() {
                     id="message"
                     name="message"
                     required
+                    aria-required="true"
                     placeholder={t("f_msg_ph")}
                     aria-describedby={errors.message ? "errMsg" : undefined}
                     aria-invalid={!!errors.message}
@@ -320,6 +335,7 @@ export function ContactSection() {
                     name="privacy"
                     type="checkbox"
                     required
+                    aria-required="true"
                     aria-describedby={errors.privacy ? "privacyHint errPriv" : "privacyHint"}
                     aria-invalid={!!errors.privacy}
                     className="mt-0.5 h-5 w-5 shrink-0 rounded accent-primary transition-shadow"
@@ -349,9 +365,11 @@ export function ContactSection() {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105"
+                  disabled={submitting}
+                  aria-disabled={submitting}
+                  className="inline-flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {t("f_submit")}
+                  {submitting ? t("f_submitting") : t("f_submit")}
                 </button>
 
               </form>
