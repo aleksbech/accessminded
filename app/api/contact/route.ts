@@ -76,7 +76,7 @@ const contactSchema = z.object({
     email: z.string().email().max(320),
     message: z.string().min(1).max(5000),
     url: z.string().url().max(2000).or(z.literal("")),
-    service: z.enum(["audit", "reaudit", "training-notify"]),
+    service: z.enum(["audit", "reaudit", "training", "training-notify"]),
 })
 
 function isAllowedOrigin(origin: string | null): boolean {
@@ -115,7 +115,9 @@ export async function POST(req: Request) {
         const isTrainingNotify = service === "training-notify"
         const subject = isTrainingNotify
             ? "Nowy zapis na powiadomienie o szkoleniu"
-            : "Nowa wiadomość ze strony"
+            : service === "training"
+            ? "Nowa wiadomość — Szkolenia (Aleksandra Migus)"
+            : "Nowa wiadomość — Audyty (Aleksandra Bech)"
         const html = isTrainingNotify
             ? `
         <h2>Nowy zapis na powiadomienie o szkoleniu WCAG</h2>

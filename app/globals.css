@@ -191,3 +191,23 @@ body {
   overflow-x: hidden;
 }
 
+/* Image styling for rectangular aspect ratios */
+.blog-image,
+.team-photo,
+.article-thumbnail {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+/* Alternative 3:2 ratio option */
+.blog-image-3-2 {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
+}
+

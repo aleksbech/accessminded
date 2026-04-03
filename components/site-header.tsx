@@ -6,12 +6,12 @@ import { Menu, X } from "lucide-react"
 import { useLang } from "./lang-provider"
 
 const NAV_ITEMS = [
-  { key: "nav_services", href: "/#services" },
-  { key: "nav_process", href: "/#process" },
-  { key: "nav_about", href: "/#about" },
-  { key: "nav_training", href: "/szkolenia", plOnly: true },
-  { key: "nav_faq", href: "/#faq" },
-  { key: "nav_contact", href: "/#contact" },
+  { key: "nav_home", href: "/" },
+  { key: "nav_about_page", href: "/o-nas" },
+  { key: "nav_training", href: "/szkolenia" },
+  { key: "nav_audits", href: "/audyty" },
+  { key: "nav_blog", href: "/blog" },
+  { key: "nav_contact_page", href: "/kontakt" },
 ] as const
 
 export function SiteHeader() {
@@ -92,7 +92,7 @@ export function SiteHeader() {
 
         <nav className="hidden lg:block lg:justify-self-center" aria-label="Primary">
           <ul className="flex items-center gap-1">
-            {NAV_ITEMS.filter((item) => !("plOnly" in item && item.plOnly && lang !== "pl")).map((item) => (
+            {NAV_ITEMS.map((item) => (
               <li key={item.key}>
                 <a
                   href={item.href}
@@ -136,7 +136,7 @@ export function SiteHeader() {
           </div>
 
           <a
-            href="/#contact"
+            href="/kontakt"
             className="hidden min-w-[10.5rem] justify-center rounded-2xl border border-primary/45 bg-primary px-4 py-2.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 sm:inline-flex"
           >
             {t("cta_nav")}
@@ -173,7 +173,7 @@ export function SiteHeader() {
           aria-label="Mobile navigation"
         >
           <ul className="grid gap-1 px-4 py-3">
-            {NAV_ITEMS.filter((item) => !("plOnly" in item && item.plOnly && lang !== "pl")).map((item) => (
+            {NAV_ITEMS.map((item) => (
               <li key={item.key}>
                 <a
                   href={item.href}
@@ -186,7 +186,7 @@ export function SiteHeader() {
             ))}
             <li>
               <a
-                href="/#contact"
+                href="/kontakt"
                 onClick={closeMobile}
                 className="mt-2 flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-4 py-3 text-sm font-black text-primary-foreground sm:hidden"
               >

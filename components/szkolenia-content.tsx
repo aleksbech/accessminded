@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { useLang } from "./lang-provider"
 import { SiteHeader } from "./site-header"
 import { SiteFooter } from "./site-footer"
@@ -17,16 +15,7 @@ function SkipLink() {
 }
 
 export function SzkoleniaContent() {
-    const { lang, t } = useLang()
-    const router = useRouter()
-
-    useEffect(() => {
-        if (lang === "en") {
-            router.replace("/")
-        }
-    }, [lang, router])
-
-    if (lang === "en") return null
+    const { t } = useLang()
 
     return (
         <>

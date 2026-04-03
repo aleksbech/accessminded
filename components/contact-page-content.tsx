@@ -1,0 +1,308 @@
+"use client"
+
+import { useState, useRef } from "react"
+import { GraduationCap, ClipboardCheck } from "lucide-react"
+import { useLang } from "./lang-provider"
+import { SiteHeader } from "./site-header"
+import { SiteFooter } from "./site-footer"
+import Link from "next/link"
+
+function SkipLink() {
+  const { t } = useLang()
+  return (
+    <a className="skip-link" href="#content">
+      {t("skip_to_content")}
+    </a>
+  )
+}
+
+interface FormErrors {
+  name?: string
+  email?: string
+  message?: string
+  privacy?: string
+}
+
+function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix: string }) {
+  const { t } = useLang()
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
+  const statusRef = useRef<HTMLDivElement>(null)
+
+  function validate(form: FormData): FormErrors {
+    const errs: FormErrors = {}
+    const name = (form.get("name") as string)?.trim()
+    const email = (form.get("email") as string)?.trim()
+    const message = (form.get("message") as string)?.trim()
+    const privacy = form.get("privacy")
+
+    if (!name) errs.name = t("f_err_name")
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      errs.email = t("f_err_email")
+    if (!message || message.length < 20) errs.message = t("f_err_msg")
+    if (!privacy) errs.privacy = t("f_err_priv")
+
+    return errs
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    const formData = new FormData(e.currentTarget)
+    const errs = validate(formData)
+
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs)
+      setSubmitted(false)
+      const firstKey = Object.keys(errs)[0]
+      const el = formRef.current?.querySelector(`[name="${firstKey}"]`)
+      if (el instanceof HTMLElement) el.focus()
+      return
+    }
+
+    setErrors({})
+    setSubmitted(false)
+    setSubmitting(true)
+
+    const payload = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      url: String(formData.get("url") || ""),
+      service,
+      message: String(formData.get("message") || ""),
+      privacy: Boolean(formData.get("privacy")),
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        setErrors({ message: result.error || t("f_err_send") })
+        return
+      }
+
+      setSubmitted(true)
+      formRef.current?.reset()
+      requestAnimationFrame(() => statusRef.current?.focus())
+    } catch (error) {
+      console.error("FORM SUBMIT ERROR:", error)
+      setErrors({ message: t("f_err_connection") })
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  return (
+    <div>
+      <div
+        ref={statusRef}
+        aria-live="polite"
+        role="status"
+        tabIndex={-1}
+        className="mb-4 text-sm focus:outline-none"
+      >
+        {submitted && (
+          <p className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 font-bold text-primary">
+            {t("f_success")}
+          </p>
+        )}
+      </div>
+
+      <form ref={formRef} noValidate onSubmit={handleSubmit} className="grid gap-4">
+        {/* Name */}
+        <div className="grid gap-1.5">
+          <label htmlFor={`${formIdPrefix}-name`} className="text-sm font-black text-foreground">
+            {t("f_name_label")} <span className="text-primary" aria-hidden="true">*</span>
+          </label>
+          <input
+            id={`${formIdPrefix}-name`}
+            name="name"
+            type="text"
+            autoComplete="name"
+            required
+            aria-required="true"
+            placeholder={t("f_name_ph")}
+            aria-invalid={!!errors.name}
+            className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
+          />
+          {errors.name && (
+            <p role="alert" className="text-xs font-bold text-destructive">{errors.name}</p>
+          )}
+        </div>
+
+        {/* Email */}
+        <div className="grid gap-1.5">
+          <label htmlFor={`${formIdPrefix}-email`} className="text-sm font-black text-foreground">
+            {t("f_email_label")} <span className="text-primary" aria-hidden="true">*</span>
+          </label>
+          <input
+            id={`${formIdPrefix}-email`}
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            aria-required="true"
+            placeholder={t("f_email_ph")}
+            aria-invalid={!!errors.email}
+            className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
+          />
+          {errors.email && (
+            <p role="alert" className="text-xs font-bold text-destructive">{errors.email}</p>
+          )}
+        </div>
+
+        {/* URL */}
+        <div className="grid gap-1.5">
+          <label htmlFor={`${formIdPrefix}-url`} className="text-sm font-black text-foreground">
+            {t("f_url_label")}
+          </label>
+          <input
+            id={`${formIdPrefix}-url`}
+            name="url"
+            type="url"
+            autoComplete="url"
+            placeholder={t("f_url_ph")}
+            className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
+          />
+        </div>
+
+        {/* Message */}
+        <div className="grid gap-1.5">
+          <label htmlFor={`${formIdPrefix}-message`} className="text-sm font-black text-foreground">
+            {t("f_msg_label")} <span className="text-primary" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id={`${formIdPrefix}-message`}
+            name="message"
+            required
+            aria-required="true"
+            placeholder={t("f_msg_ph")}
+            aria-invalid={!!errors.message}
+            rows={5}
+            className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow resize-none"
+          />
+          {errors.message && (
+            <p role="alert" className="text-xs font-bold text-destructive">{errors.message}</p>
+          )}
+        </div>
+
+        {/* Privacy */}
+        <div className="flex items-start gap-3">
+          <input
+            id={`${formIdPrefix}-privacy`}
+            name="privacy"
+            type="checkbox"
+            required
+            aria-required="true"
+            aria-invalid={!!errors.privacy}
+            className="mt-0.5 h-5 w-5 shrink-0 rounded accent-primary transition-shadow"
+          />
+          <div className="grid gap-1">
+            <label htmlFor={`${formIdPrefix}-privacy`} className="text-sm font-bold text-foreground">
+              {t("f_priv_label")} <span className="text-primary" aria-hidden="true">*</span>
+            </label>
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              <Link
+                href="/privacy-policy"
+                className="inline-flex items-center self-start whitespace-nowrap px-2 py-0.5 text-xs leading-none text-primary underline underline-offset-4"
+                style={{ borderRadius: "8px", width: "fit-content" }}
+              >
+                {t("f_priv_link")}
+              </Link>
+            </p>
+            {errors.privacy && (
+              <p role="alert" className="text-xs font-bold text-destructive">{errors.privacy}</p>
+            )}
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          disabled={submitting}
+          aria-disabled={submitting}
+          className="inline-flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {submitting ? t("f_submitting") : t("f_submit")}
+        </button>
+      </form>
+    </div>
+  )
+}
+
+export function ContactPageContent() {
+  const { t } = useLang()
+
+  return (
+    <>
+      <SkipLink />
+      <SiteHeader />
+      <main id="content" tabIndex={-1} aria-label={t("skip_to_content")}>
+        <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-6 lg:px-8">
+          <div className="grid gap-12 md:gap-16">
+            {/* Page header */}
+            <section className="mb-4">
+              <h1 className="mb-4 text-3xl font-black tracking-tight md:text-4xl">
+                {t("contact_choice_title")}
+              </h1>
+              <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed">
+                {t("contact_choice_intro")}
+              </p>
+            </section>
+
+            {/* Two side-by-side contact forms */}
+            <section className="grid gap-8 lg:grid-cols-2" aria-label="Contact forms">
+              {/* Training form */}
+              <div id="contact-training" className="flex flex-col gap-6 scroll-mt-24 rounded-3xl border border-border bg-surface p-8 shadow-lg">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/[0.10]"
+                    aria-hidden="true"
+                  >
+                    <GraduationCap className="h-6 w-6 text-secondary" strokeWidth={2} />
+                  </span>
+                  <div>
+                    <h2 className="text-2xl font-black text-foreground">
+                      {t("contact_choice_training")}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">{t("aleksandra_migus_name")}</p>
+                  </div>
+                </div>
+
+                <ContactForm service="training" formIdPrefix="training" />
+              </div>
+
+              {/* Audit form */}
+              <div id="contact-audits" className="flex flex-col gap-6 scroll-mt-24 rounded-3xl border border-border bg-surface p-8 shadow-lg">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]"
+                    aria-hidden="true"
+                  >
+                    <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={2} />
+                  </span>
+                  <div>
+                    <h2 className="text-2xl font-black text-foreground">
+                      {t("contact_choice_audit")}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">{t("aleksandra_bech_name")}</p>
+                  </div>
+                </div>
+
+                <ContactForm service="audit" formIdPrefix="audit" />
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+      <SiteFooter />
+    </>
+  )
+}
