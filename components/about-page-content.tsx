@@ -86,11 +86,11 @@ export function AboutPageContent() {
                     {t("aleksandra_bech_bio")}
                   </p>
 
-                  <div className="rounded-2xl border border-border bg-card p-5">
+                  <div className="flex flex-1 flex-col rounded-2xl border border-border bg-card p-5">
                     <h3 className="mb-4 text-lg font-black text-foreground">
                       {t("aleksandra_bech_points_title")}
                     </h3>
-                    <ul className="grid gap-3">
+                    <ul className="grid flex-1 gap-3">
                       {beachPoints.map((point) => (
                         <li key={point.textKey} className="flex items-start gap-2">
                           <span
@@ -151,11 +151,11 @@ export function AboutPageContent() {
                     {t("aleksandra_migus_bio")}
                   </p>
 
-                  <div className="rounded-2xl border border-border bg-card p-5">
+                  <div className="flex flex-1 flex-col rounded-2xl border border-border bg-card p-5">
                     <h3 className="mb-4 text-lg font-black text-foreground">
                       {t("aleksandra_migus_points_title")}
                     </h3>
-                    <ul className="grid gap-3">
+                    <ul className="grid flex-1 gap-3">
                       {migusPoints.map((point) => (
                         <li key={point.textKey} className="flex items-start gap-2">
                           <span
