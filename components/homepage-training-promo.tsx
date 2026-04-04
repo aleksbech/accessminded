@@ -92,12 +92,12 @@ export function HomepageTrainingPromo() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 min-w-0 flex-1 rounded-2xl border-2 border-border bg-input px-4 text-sm text-foreground"
+                className="min-w-0 flex-1 rounded-2xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
               />
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex h-12 shrink-0 items-center justify-center rounded-2xl bg-primary px-5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex h-14 shrink-0 items-center justify-center rounded-2xl bg-primary px-5 text-base font-black text-primary-foreground transition-all hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {submitting ? t("training_notify_submitting") : t("training_notify_submit")}
               </button>

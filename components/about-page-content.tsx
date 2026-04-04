@@ -64,7 +64,7 @@ export function AboutPageContent() {
                     fill
                     className="team-photo object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
 
@@ -82,7 +82,7 @@ export function AboutPageContent() {
                     </p>
                   </div>
 
-                  <p className="leading-relaxed text-muted-foreground md:min-h-[8.5rem]">
+                  <p className="leading-relaxed text-muted-foreground md:min-h-[14rem]">
                     {t("aleksandra_bech_bio")}
                   </p>
 
@@ -107,7 +107,7 @@ export function AboutPageContent() {
 
                   <a
                     href="/kontakt#contact-audits"
-                    className="mt-auto inline-flex items-center justify-center rounded-2xl border border-primary/55 bg-transparent px-5 py-3 text-sm font-black text-primary transition-colors hover:bg-primary/10"
+                    className="mt-auto inline-flex w-full items-center justify-center rounded-2xl border border-primary/55 bg-transparent px-6 py-3.5 text-sm font-black text-primary transition-colors hover:bg-primary/10 sm:w-auto"
                   >
                     {t("hero_cta_primary")}
                   </a>
@@ -121,9 +121,16 @@ export function AboutPageContent() {
               aria-labelledby="migus-title"
             >
               <div className="flex h-full flex-col gap-6 p-6 md:gap-6 md:p-10">
-                {/* Placeholder for Aleksandra Migus image - can be added later */}
-                <div className="relative mx-auto flex w-full max-w-sm items-center justify-center overflow-hidden rounded-2xl border-2 border-secondary/55 bg-secondary/10" style={{ aspectRatio: "3 / 4" }}>
-                  <div className="h-28 w-28 rounded-full border-2 border-secondary/50 bg-secondary/20" aria-hidden="true" />
+                {/* Image */}
+                <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-secondary/55" style={{ aspectRatio: "3 / 4" }}>
+                  <Image
+                    src="/images/aleksandra-migus.jpg"
+                    alt={t("aleksandra_migus_name")}
+                    fill
+                    className="team-photo object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="eager"
+                  />
                 </div>
 
                 {/* Content */}
@@ -140,7 +147,7 @@ export function AboutPageContent() {
                     </p>
                   </div>
 
-                  <p className="leading-relaxed text-muted-foreground md:min-h-[8.5rem]">
+                  <p className="leading-relaxed text-muted-foreground md:min-h-[14rem]">
                     {t("aleksandra_migus_bio")}
                   </p>
 
@@ -165,7 +172,7 @@ export function AboutPageContent() {
 
                   <a
                     href="/szkolenia"
-                    className="mt-auto inline-flex items-center justify-center rounded-2xl border border-secondary/55 bg-transparent px-5 py-3 text-sm font-black text-secondary transition-colors hover:bg-secondary/10"
+                    className="mt-auto inline-flex w-full items-center justify-center rounded-2xl border border-secondary/55 bg-transparent px-6 py-3.5 text-sm font-black text-secondary transition-colors hover:bg-secondary/10 sm:w-auto"
                   >
                     {t("aleksandra_migus_cta")}
                   </a>

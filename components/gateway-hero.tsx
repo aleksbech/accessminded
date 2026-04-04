@@ -58,20 +58,20 @@ export function GatewayHero() {
               <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-[10px] font-black not-italic text-muted-foreground">
                 PL
               </span>
-              Szkolenia dostępne wyłącznie w języku polskim
+              {t("hp_training_lang_note")}
             </p>
           </div>
 
           {/* card-actions always at bottom */}
-          <div className="mt-6 grid grid-cols-2 gap-3">
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <a
               href="/szkolenia"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl border border-primary/55 bg-transparent px-4 py-3.5 text-[0.8125rem] font-black text-primary transition-colors hover:bg-primary/10"
+              className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-2xl border border-primary/55 bg-transparent px-6 py-3.5 text-sm font-black text-primary transition-colors hover:bg-primary/10"
             >
               {t("home_training_cta")}
             </a>
             {/* empty slot — reserved for future second button */}
-            <span aria-hidden="true" />
+            <span aria-hidden="true" className="hidden sm:block" />
           </div>
         </div>
       </article>
@@ -118,21 +118,21 @@ export function GatewayHero() {
             <p className="mt-auto flex items-center gap-2 text-xs italic text-muted-foreground/70 pt-2">
               <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-[10px] font-black not-italic text-muted-foreground">PL</span>
               <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-[10px] font-black not-italic text-muted-foreground">EN</span>
-              Audyty dostępne w języku polskim i angielskim
+              {t("audits_bilingual_note")}
             </p>
           </div>
 
           {/* card-actions always at bottom */}
-          <div className="mt-6 grid grid-cols-2 gap-3">
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <a
               href="/audyty"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl border border-primary/55 bg-transparent px-4 py-3.5 text-[0.8125rem] font-black text-primary transition-colors hover:bg-primary/10"
+              className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-2xl border border-primary/55 bg-transparent px-6 py-3.5 text-sm font-black text-primary transition-colors hover:bg-primary/10"
             >
               {t("home_audits_more")}
             </a>
             <a
               href="/kontakt#contact-audits"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl border border-primary/45 bg-primary px-4 py-3.5 text-[0.8125rem] font-black text-primary-foreground transition-all hover:brightness-105"
+              className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-2xl border border-primary/45 bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105"
             >
               {t("home_audits_cta")}
             </a>

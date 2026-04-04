@@ -140,7 +140,7 @@ export function AuditsPageContent() {
               </h2>
               <a
                 href="/kontakt#contact-audits"
-                className="inline-flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105"
+                className="inline-flex w-full items-center justify-center rounded-2xl border border-primary/45 bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 sm:w-auto"
               >
                 {t("hero_cta_primary")}
               </a>

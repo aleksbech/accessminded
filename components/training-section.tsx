@@ -57,7 +57,6 @@ export function TrainingSection() {
             <h1 id="training-title" className="mb-3 text-4xl font-black tracking-tight md:text-5xl">
                 {t("training_page_title")}
             </h1>
-            <p className="mb-8 font-bold text-primary">{t("training_polish_only")}</p>
 
             <h2 className="mb-3 text-lg font-black text-primary">
                 {t("training_active_section_heading")}
@@ -114,7 +113,7 @@ export function TrainingSection() {
                                     required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="h-12 w-full rounded-2xl border-2 border-border bg-input px-4 text-sm text-foreground"
+                                    className="w-full rounded-2xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
                                 />
                                 <button
                                     type="submit"
@@ -137,6 +136,13 @@ export function TrainingSection() {
                     {t("training_coming_soon_note")}
                 </p>
             </div>
+
+            <p className="mt-8 flex items-center gap-2 text-xs italic text-muted-foreground/70">
+              <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-[10px] font-black not-italic text-muted-foreground">
+                PL
+              </span>
+              {t("training_polish_only")}
+            </p>
         </section>
     )
 }
