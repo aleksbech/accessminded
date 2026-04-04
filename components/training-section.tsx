@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
+import { GraduationCap } from "lucide-react"
 import { useLang } from "./lang-provider"
 
 export function TrainingSection() {
@@ -58,15 +59,24 @@ export function TrainingSection() {
             </h1>
             <p className="mb-8 font-bold text-primary">{t("training_polish_only")}</p>
 
+            <h2 className="mb-3 text-lg font-black text-primary">
+                {t("training_active_section_heading")}
+            </h2>
+
             {/* Single WCAG training card */}
-            <div className="rounded-3xl bg-muted/50 p-8 md:p-10">
-                <span className="inline-flex items-center rounded-full border border-primary/35 bg-primary/[0.10] px-3 py-1 text-xs font-black text-primary">
-                    WCAG 2.2
-                </span>
-                <h2 className="mt-4 text-2xl font-black tracking-tight md:text-3xl">
-                    {t("training_item_active_title")}
-                </h2>
-                <p className="mt-3 text-lg text-muted-foreground">{t("training_item_active_subtitle")}</p>
+            <div className="rounded-3xl border border-border bg-surface p-6 shadow-lg md:p-8">
+                <h3 className="flex items-center gap-3 text-xl font-black text-foreground md:text-2xl">
+                    <span
+                        className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]"
+                        aria-hidden="true"
+                    >
+                        <GraduationCap className="h-5 w-5 text-primary" strokeWidth={2} />
+                    </span>
+                    {t("training_active_name")}
+                </h3>
+                <p className="mt-3 w-full max-w-none text-muted-foreground">
+                    {t("training_active_desc")}
+                </p>
 
                 <div className="mt-6 grid gap-2 text-muted-foreground">
                     <p>{t("training_item_active_program")}</p>
@@ -75,7 +85,7 @@ export function TrainingSection() {
                 </div>
 
                 {/* Waitlist form */}
-                <div className="mt-8">
+                <div className="mt-6">
                     <div
                         ref={statusRef}
                         aria-live="polite"
@@ -102,15 +112,14 @@ export function TrainingSection() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    placeholder={t("training_notify_ph")}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
+                                    className="h-12 w-full rounded-2xl border-2 border-border bg-input px-4 text-sm text-foreground"
                                 />
                                 <button
                                     type="submit"
                                     disabled={submitting}
-                                    className="inline-flex shrink-0 items-center justify-center rounded-2xl bg-primary px-5 py-3 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="inline-flex h-12 shrink-0 items-center justify-center rounded-2xl bg-primary px-5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
                                 >
                                     {submitting ? t("training_notify_submitting") : t("training_notify_submit")}
                                 </button>
@@ -127,13 +136,6 @@ export function TrainingSection() {
                 <p className="mt-8 text-sm italic text-muted-foreground">
                     {t("training_coming_soon_note")}
                 </p>
-
-                <a
-                    href="/kontakt#contact-training"
-                    className="mt-6 inline-flex items-center justify-center rounded-2xl border border-primary/55 bg-transparent px-6 py-3 text-sm font-black text-primary transition-colors hover:bg-primary/10"
-                >
-                    {t("contact_training_trigger")}
-                </a>
             </div>
         </section>
     )

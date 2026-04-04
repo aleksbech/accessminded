@@ -191,6 +191,23 @@ body {
   overflow-x: hidden;
 }
 
+/* Nav link anti-shake: reserves space for bold text at all times via ::after ghost element */
+nav a[data-text] {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav a[data-text]::after {
+  content: attr(data-text);
+  font-weight: 900;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
 /* Image styling for rectangular aspect ratios */
 .blog-image,
 .team-photo,

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { GraduationCap, ClipboardCheck } from "lucide-react"
+import { GraduationCap, ClipboardCheck, CheckCircle2 } from "lucide-react"
 import { useLang } from "./lang-provider"
 import { SiteHeader } from "./site-header"
 import { SiteFooter } from "./site-footer"
@@ -19,11 +19,20 @@ function SkipLink() {
 interface FormErrors {
   name?: string
   email?: string
+  trainingInterest?: string
   message?: string
   privacy?: string
 }
 
-function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix: string }) {
+function ContactForm({
+  service,
+  formIdPrefix,
+  variant,
+}: {
+  service: string
+  formIdPrefix: string
+  variant: "training" | "audit"
+}) {
   const { t } = useLang()
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
@@ -35,12 +44,17 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
     const errs: FormErrors = {}
     const name = (form.get("name") as string)?.trim()
     const email = (form.get("email") as string)?.trim()
+    const trainingInterest = (form.get("trainingInterest") as string)?.trim()
     const message = (form.get("message") as string)?.trim()
     const privacy = form.get("privacy")
 
     if (!name) errs.name = t("f_err_name")
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errs.email = t("f_err_email")
+    }
+    if (variant === "training" && !trainingInterest) {
+      errs.trainingInterest = t("f_err_training_interest")
+    }
     if (!message || message.length < 20) errs.message = t("f_err_msg")
     if (!privacy) errs.privacy = t("f_err_priv")
 
@@ -66,12 +80,19 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
     setSubmitted(false)
     setSubmitting(true)
 
+    const trainingInterest = String(formData.get("trainingInterest") || "").trim()
+    const baseMessage = String(formData.get("message") || "")
+    const message =
+      variant === "training" && trainingInterest
+        ? `${t("f_training_interest_label")}: ${trainingInterest}\n\n${baseMessage}`
+        : baseMessage
+
     const payload = {
       name: String(formData.get("name") || ""),
       email: String(formData.get("email") || ""),
-      url: String(formData.get("url") || ""),
+      url: variant === "audit" ? String(formData.get("url") || "") : "",
       service,
-      message: String(formData.get("message") || ""),
+      message,
       privacy: Boolean(formData.get("privacy")),
     }
 
@@ -117,7 +138,6 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
       </div>
 
       <form ref={formRef} noValidate onSubmit={handleSubmit} className="grid gap-4">
-        {/* Name */}
         <div className="grid gap-1.5">
           <label htmlFor={`${formIdPrefix}-name`} className="text-sm font-black text-foreground">
             {t("f_name_label")} <span className="text-primary" aria-hidden="true">*</span>
@@ -133,12 +153,9 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
             aria-invalid={!!errors.name}
             className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
           />
-          {errors.name && (
-            <p role="alert" className="text-xs font-bold text-destructive">{errors.name}</p>
-          )}
+          {errors.name && <p role="alert" className="text-xs font-bold text-destructive">{errors.name}</p>}
         </div>
 
-        {/* Email */}
         <div className="grid gap-1.5">
           <label htmlFor={`${formIdPrefix}-email`} className="text-sm font-black text-foreground">
             {t("f_email_label")} <span className="text-primary" aria-hidden="true">*</span>
@@ -154,27 +171,44 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
             aria-invalid={!!errors.email}
             className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
           />
-          {errors.email && (
-            <p role="alert" className="text-xs font-bold text-destructive">{errors.email}</p>
-          )}
+          {errors.email && <p role="alert" className="text-xs font-bold text-destructive">{errors.email}</p>}
         </div>
 
-        {/* URL */}
-        <div className="grid gap-1.5">
-          <label htmlFor={`${formIdPrefix}-url`} className="text-sm font-black text-foreground">
-            {t("f_url_label")}
-          </label>
-          <input
-            id={`${formIdPrefix}-url`}
-            name="url"
-            type="url"
-            autoComplete="url"
-            placeholder={t("f_url_ph")}
-            className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
-          />
-        </div>
+        {variant === "audit" ? (
+          <div className="grid gap-1.5">
+            <label htmlFor={`${formIdPrefix}-url`} className="text-sm font-black text-foreground">
+              {t("f_url_label")}
+            </label>
+            <input
+              id={`${formIdPrefix}-url`}
+              name="url"
+              type="url"
+              autoComplete="url"
+              placeholder={t("f_url_ph")}
+              className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow"
+            />
+          </div>
+        ) : (
+          <div className="grid gap-1.5">
+            <label htmlFor={`${formIdPrefix}-training-interest`} className="text-sm font-black text-foreground">
+              {t("f_training_interest_label")} <span className="text-primary" aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id={`${formIdPrefix}-training-interest`}
+              name="trainingInterest"
+              required
+              aria-required="true"
+              rows={3}
+              placeholder={t("f_training_interest_ph")}
+              aria-invalid={!!errors.trainingInterest}
+              className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow resize-none"
+            />
+            {errors.trainingInterest && (
+              <p role="alert" className="text-xs font-bold text-destructive">{errors.trainingInterest}</p>
+            )}
+          </div>
+        )}
 
-        {/* Message */}
         <div className="grid gap-1.5">
           <label htmlFor={`${formIdPrefix}-message`} className="text-sm font-black text-foreground">
             {t("f_msg_label")} <span className="text-primary" aria-hidden="true">*</span>
@@ -189,12 +223,9 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
             rows={5}
             className="w-full rounded-xl border-2 border-border bg-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-shadow resize-none"
           />
-          {errors.message && (
-            <p role="alert" className="text-xs font-bold text-destructive">{errors.message}</p>
-          )}
+          {errors.message && <p role="alert" className="text-xs font-bold text-destructive">{errors.message}</p>}
         </div>
 
-        {/* Privacy */}
         <div className="flex items-start gap-3">
           <input
             id={`${formIdPrefix}-privacy`}
@@ -218,9 +249,7 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
                 {t("f_priv_link")}
               </Link>
             </p>
-            {errors.privacy && (
-              <p role="alert" className="text-xs font-bold text-destructive">{errors.privacy}</p>
-            )}
+            {errors.privacy && <p role="alert" className="text-xs font-bold text-destructive">{errors.privacy}</p>}
           </div>
         </div>
 
@@ -228,7 +257,7 @@ function ContactForm({ service, formIdPrefix }: { service: string; formIdPrefix:
           type="submit"
           disabled={submitting}
           aria-disabled={submitting}
-          className="inline-flex items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="inline-flex h-12 items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {submitting ? t("f_submitting") : t("f_submit")}
         </button>
@@ -246,57 +275,71 @@ export function ContactPageContent() {
       <SiteHeader />
       <main id="content" tabIndex={-1} aria-label={t("skip_to_content")}>
         <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-6 lg:px-8">
-          <div className="grid gap-12 md:gap-16">
-            {/* Page header */}
-            <section className="mb-4">
+          <div className="grid gap-6 md:gap-8">
+            <section>
               <h1 className="mb-4 text-3xl font-black tracking-tight md:text-4xl">
                 {t("contact_choice_title")}
               </h1>
-              <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed">
+              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
                 {t("contact_choice_intro")}
               </p>
             </section>
 
-            {/* Two side-by-side contact forms */}
-            <section className="grid gap-8 lg:grid-cols-2" aria-label="Contact forms">
-              {/* Training form */}
-              <div id="contact-training" className="flex flex-col gap-6 scroll-mt-24 rounded-3xl border border-border bg-surface p-8 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <span
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/[0.10]"
-                    aria-hidden="true"
-                  >
-                    <GraduationCap className="h-6 w-6 text-secondary" strokeWidth={2} />
-                  </span>
+            <section className="grid gap-6" aria-label="Contact forms">
+              <div id="contact-audits" className="scroll-mt-24 rounded-3xl border border-border bg-surface p-6 shadow-lg md:p-8">
+                <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+                  <aside className="grid content-start gap-5 border-border lg:border-r lg:pr-8">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]" aria-hidden="true">
+                        <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={2} />
+                      </span>
+                      <h2 className="text-xl font-black text-foreground md:text-2xl">{t("contact_choice_audit")}</h2>
+                    </div>
+                    <p className="text-muted-foreground">{t("contact_body")}</p>
+                    <div className="grid gap-1 text-sm text-foreground/90">
+                      <p><span className="font-black">{t("f_name_label")}: </span>{t("aleksandra_bech_name")}</p>
+                      <p><span className="font-black">{t("contact_email_label")}: </span><a className="text-primary underline underline-offset-4" href={`mailto:${t("contact_email_value")}`}>{t("contact_email_value")}</a></p>
+                      <p><span className="font-black">{t("contact_lang_label")}: </span>{t("contact_lang_value")}</p>
+                    </div>
+                    <div className="grid gap-2">
+                      <p className="text-sm font-black uppercase tracking-wide text-foreground/90">{t("contact_expect_title")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_1")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_2")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_3")}</p>
+                    </div>
+                  </aside>
                   <div>
-                    <h2 className="text-2xl font-black text-foreground">
-                      {t("contact_choice_training")}
-                    </h2>
-                    <p className="text-sm text-muted-foreground">{t("aleksandra_migus_name")}</p>
+                    <ContactForm service="audit" formIdPrefix="audit" variant="audit" />
                   </div>
                 </div>
-
-                <ContactForm service="training" formIdPrefix="training" />
               </div>
 
-              {/* Audit form */}
-              <div id="contact-audits" className="flex flex-col gap-6 scroll-mt-24 rounded-3xl border border-border bg-surface p-8 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <span
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]"
-                    aria-hidden="true"
-                  >
-                    <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={2} />
-                  </span>
+              <div id="contact-training" className="scroll-mt-24 rounded-3xl border border-border bg-surface p-6 shadow-lg md:p-8">
+                <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+                  <aside className="grid content-start gap-5 border-border lg:border-r lg:pr-8">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/[0.10]" aria-hidden="true">
+                        <GraduationCap className="h-6 w-6 text-secondary" strokeWidth={2} />
+                      </span>
+                      <h2 className="text-xl font-black text-foreground md:text-2xl">{t("contact_choice_training")}</h2>
+                    </div>
+                    <p className="text-muted-foreground">{t("contact_choice_training_desc")}</p>
+                    <div className="grid gap-1 text-sm text-foreground/90">
+                      <p><span className="font-black">{t("f_name_label")}: </span>{t("aleksandra_migus_name")}</p>
+                      <p><span className="font-black">{t("contact_email_label")}: </span><a className="text-primary underline underline-offset-4" href={`mailto:${t("contact_email_training_value")}`}>{t("contact_email_training_value")}</a></p>
+                      <p><span className="font-black">{t("contact_lang_label")}: </span>{t("contact_lang_training_value")}</p>
+                    </div>
+                    <div className="grid gap-2">
+                      <p className="text-sm font-black uppercase tracking-wide text-foreground/90">{t("contact_expect_title")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_1")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_2")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_3")}</p>
+                    </div>
+                  </aside>
                   <div>
-                    <h2 className="text-2xl font-black text-foreground">
-                      {t("contact_choice_audit")}
-                    </h2>
-                    <p className="text-sm text-muted-foreground">{t("aleksandra_bech_name")}</p>
+                    <ContactForm service="training" formIdPrefix="training" variant="training" />
                   </div>
                 </div>
-
-                <ContactForm service="audit" formIdPrefix="audit" />
               </div>
             </section>
           </div>

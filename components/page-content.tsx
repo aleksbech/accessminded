@@ -3,7 +3,8 @@
 import { useLang } from "./lang-provider"
 import { SiteHeader } from "./site-header"
 import { GatewayHero } from "./gateway-hero"
-import { HomepageTrainingPromo, BlogSection } from "./blog-section"
+import { HomepageTrainingPromo } from "./homepage-training-promo"
+import { BlogSection } from "./blog-section"
 import { SiteFooter } from "./site-footer"
 
 function SkipLink() {
