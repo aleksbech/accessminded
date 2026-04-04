@@ -40,10 +40,10 @@ export function ServicesSection() {
           <article className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6">
             <div className="flex items-center gap-3">
               <span
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/[0.10]"
                 aria-hidden="true"
               >
-                <ClipboardCheck className="h-5 w-5 text-primary" strokeWidth={2} />
+                <ClipboardCheck className="h-5 w-5 text-secondary" strokeWidth={2} />
               </span>
               <h3 className="text-lg font-black text-foreground">
                 {t("svc_audit_title")}
@@ -52,7 +52,7 @@ export function ServicesSection() {
             <ul className="grid gap-2.5">
               {auditItems.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} aria-hidden="true" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-secondary" strokeWidth={2.5} aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}

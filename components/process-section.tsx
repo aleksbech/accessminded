@@ -25,7 +25,7 @@ function StepCard({
       {/* Ikona + strzałka w jednej linii */}
       <div className="relative mb-4 flex h-12 w-full items-center justify-center">
         <div
-          className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-[rgba(252,211,77,0.5)] bg-[rgba(252,211,77,0.12)] text-lg font-black text-foreground"
+          className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-secondary/45 bg-secondary/[0.14] text-lg font-black text-foreground"
           aria-hidden="true"
         >
           {icon}
@@ -37,8 +37,8 @@ function StepCard({
             aria-hidden="true"
           >
             <div className="relative w-full">
-              <div className="h-[2px] w-[calc(100%-12px)] bg-primary/70" />
-              <span className="absolute right-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[6px] border-l-[12px] border-y-transparent border-l-primary/70" />
+              <div className="h-[2px] w-[calc(100%-12px)] bg-secondary/70" />
+              <span className="absolute right-0 top-1/2 h-0 w-0 -translate-y-1/2 border-y-[6px] border-l-[12px] border-y-transparent border-l-secondary/70" />
             </div>
           </div>
         )}

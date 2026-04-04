@@ -57,7 +57,7 @@ export function AboutPageContent() {
             >
               <div className="flex h-full flex-col gap-6 p-6 md:gap-6 md:p-10">
                 {/* Image */}
-                <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-primary/55" style={{ aspectRatio: "3 / 4" }}>
+                <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-secondary/55" style={{ aspectRatio: "3 / 4" }}>
                   <Image
                     src="/images/aleksandra-bech.jpg"
                     alt={t("aleksandra_bech_name")}
@@ -73,11 +73,11 @@ export function AboutPageContent() {
                   <div>
                     <h2
                       id="bech-title"
-                      className="text-2xl font-black tracking-tight"
+                      className="text-balance text-[2rem] font-black leading-[1.08] tracking-[-0.02em] text-secondary md:text-[2.35rem]"
                     >
-                      {t("aleksandra_bech_name")}
+                      Aleksandra Bech
                     </h2>
-                    <p className="text-sm font-bold text-primary">
+                    <p className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-foreground/90">
                       {t("aleksandra_bech_role")}
                     </p>
                   </div>
@@ -94,10 +94,10 @@ export function AboutPageContent() {
                       {beachPoints.map((point) => (
                         <li key={point.textKey} className="flex items-start gap-2">
                           <span
-                            className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/[0.14]"
+                            className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-secondary/35 bg-secondary/[0.14]"
                             aria-hidden="true"
                           >
-                            <Check className="h-3.5 w-3.5 text-primary" strokeWidth={3} />
+                            <Check className="h-3.5 w-3.5 text-secondary" strokeWidth={3} />
                           </span>
                           <span>{t(point.textKey)}</span>
                         </li>
@@ -107,7 +107,7 @@ export function AboutPageContent() {
 
                   <a
                     href="/kontakt#contact-audits"
-                    className="mt-auto inline-flex w-full items-center justify-center rounded-2xl border border-primary/55 bg-transparent px-6 py-3.5 text-sm font-black text-primary transition-colors hover:bg-primary/10 sm:w-auto"
+                    className="mt-auto inline-flex w-full items-center justify-center rounded-2xl border border-secondary/55 bg-transparent px-6 py-3.5 text-sm font-black text-secondary transition-colors hover:bg-secondary/10 sm:w-auto"
                   >
                     {t("hero_cta_primary")}
                   </a>
@@ -122,7 +122,7 @@ export function AboutPageContent() {
             >
               <div className="flex h-full flex-col gap-6 p-6 md:gap-6 md:p-10">
                 {/* Image */}
-                <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-secondary/55" style={{ aspectRatio: "3 / 4" }}>
+                <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-primary/55" style={{ aspectRatio: "3 / 4" }}>
                   <Image
                     src="/images/aleksandra-migus.jpg"
                     alt={t("aleksandra_migus_name")}
@@ -138,11 +138,11 @@ export function AboutPageContent() {
                   <div>
                     <h2
                       id="migus-title"
-                      className="text-2xl font-black tracking-tight"
+                      className="text-balance text-[2rem] font-black leading-[1.08] tracking-[-0.02em] text-primary md:text-[2.35rem]"
                     >
-                      {t("aleksandra_migus_name")}
+                      Aleksandra Migus
                     </h2>
-                    <p className="text-sm font-bold text-secondary">
+                    <p className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-foreground/90">
                       {t("aleksandra_migus_role")}
                     </p>
                   </div>
@@ -159,10 +159,10 @@ export function AboutPageContent() {
                       {migusPoints.map((point) => (
                         <li key={point.textKey} className="flex items-start gap-2">
                           <span
-                            className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-secondary/35 bg-secondary/[0.14]"
+                            className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/[0.14]"
                             aria-hidden="true"
                           >
-                            <Check className="h-3.5 w-3.5 text-secondary" strokeWidth={3} />
+                            <Check className="h-3.5 w-3.5 text-primary" strokeWidth={3} />
                           </span>
                           <span>{t(point.textKey)}</span>
                         </li>
@@ -172,7 +172,7 @@ export function AboutPageContent() {
 
                   <a
                     href="/szkolenia"
-                    className="mt-auto inline-flex w-full items-center justify-center rounded-2xl border border-secondary/55 bg-transparent px-6 py-3.5 text-sm font-black text-secondary transition-colors hover:bg-secondary/10 sm:w-auto"
+                    className="mt-auto inline-flex w-full items-center justify-center rounded-2xl border border-primary/55 bg-transparent px-6 py-3.5 text-sm font-black text-primary transition-colors hover:bg-primary/10 sm:w-auto"
                   >
                     {t("aleksandra_migus_cta")}
                   </a>

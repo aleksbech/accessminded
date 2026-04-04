@@ -34,6 +34,7 @@ function ContactForm({
   variant: "training" | "audit"
 }) {
   const { t } = useLang()
+  const isAudit = variant === "audit"
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -131,7 +132,7 @@ function ContactForm({
         className="mb-4 text-sm focus:outline-none"
       >
         {submitted && (
-          <p className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 font-bold text-primary">
+          <p className={isAudit ? "rounded-lg border border-secondary/30 bg-secondary/10 px-4 py-3 font-bold text-secondary" : "rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 font-bold text-primary"}>
             {t("f_success")}
           </p>
         )}
@@ -140,7 +141,7 @@ function ContactForm({
       <form ref={formRef} noValidate onSubmit={handleSubmit} className="grid gap-4">
         <div className="grid gap-1.5">
           <label htmlFor={`${formIdPrefix}-name`} className="text-sm font-black text-foreground">
-            {t("f_name_label")} <span className="text-primary" aria-hidden="true">*</span>
+            {t("f_name_label")} <span className={isAudit ? "text-secondary" : "text-primary"} aria-hidden="true">*</span>
           </label>
           <input
             id={`${formIdPrefix}-name`}
@@ -158,7 +159,7 @@ function ContactForm({
 
         <div className="grid gap-1.5">
           <label htmlFor={`${formIdPrefix}-email`} className="text-sm font-black text-foreground">
-            {t("f_email_label")} <span className="text-primary" aria-hidden="true">*</span>
+            {t("f_email_label")} <span className={isAudit ? "text-secondary" : "text-primary"} aria-hidden="true">*</span>
           </label>
           <input
             id={`${formIdPrefix}-email`}
@@ -211,7 +212,7 @@ function ContactForm({
 
         <div className="grid gap-1.5">
           <label htmlFor={`${formIdPrefix}-message`} className="text-sm font-black text-foreground">
-            {t("f_msg_label")} <span className="text-primary" aria-hidden="true">*</span>
+            {t("f_msg_label")} <span className={isAudit ? "text-secondary" : "text-primary"} aria-hidden="true">*</span>
           </label>
           <textarea
             id={`${formIdPrefix}-message`}
@@ -234,16 +235,16 @@ function ContactForm({
             required
             aria-required="true"
             aria-invalid={!!errors.privacy}
-            className="mt-0.5 h-5 w-5 shrink-0 rounded accent-primary transition-shadow"
+            className={isAudit ? "mt-0.5 h-5 w-5 shrink-0 rounded accent-secondary transition-shadow" : "mt-0.5 h-5 w-5 shrink-0 rounded accent-primary transition-shadow"}
           />
           <div className="grid gap-1">
             <label htmlFor={`${formIdPrefix}-privacy`} className="text-sm font-bold text-foreground">
-              {t("f_priv_label")} <span className="text-primary" aria-hidden="true">*</span>
+              {t("f_priv_label")} <span className={isAudit ? "text-secondary" : "text-primary"} aria-hidden="true">*</span>
             </label>
             <p className="text-xs leading-relaxed text-muted-foreground">
               <Link
                 href="/privacy-policy"
-                className="inline-flex items-center self-start whitespace-nowrap px-2 py-0.5 text-xs leading-none text-primary underline underline-offset-4"
+                className={isAudit ? "inline-flex items-center self-start whitespace-nowrap px-2 py-0.5 text-xs leading-none text-secondary underline underline-offset-4" : "inline-flex items-center self-start whitespace-nowrap px-2 py-0.5 text-xs leading-none text-primary underline underline-offset-4"}
                 style={{ borderRadius: "8px", width: "fit-content" }}
               >
                 {t("f_priv_link")}
@@ -257,7 +258,7 @@ function ContactForm({
           type="submit"
           disabled={submitting}
           aria-disabled={submitting}
-          className="inline-flex h-12 items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:opacity-60 disabled:cursor-not-allowed"
+          className={isAudit ? "inline-flex h-12 items-center justify-center rounded-2xl border border-secondary/45 bg-secondary px-5 text-sm font-black text-secondary-foreground transition-all hover:brightness-105 disabled:opacity-60 disabled:cursor-not-allowed" : "inline-flex h-12 items-center justify-center rounded-2xl border border-primary/45 bg-primary px-5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 disabled:opacity-60 disabled:cursor-not-allowed"}
         >
           {submitting ? t("f_submitting") : t("f_submit")}
         </button>
@@ -290,22 +291,22 @@ export function ContactPageContent() {
                 <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
                   <aside className="grid content-start gap-5 border-border lg:border-r lg:pr-8">
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]" aria-hidden="true">
-                        <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={2} />
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/[0.10]" aria-hidden="true">
+                        <ClipboardCheck className="h-6 w-6 text-secondary" strokeWidth={2} />
                       </span>
                       <h2 className="text-xl font-black text-foreground md:text-2xl">{t("contact_choice_audit")}</h2>
                     </div>
                     <p className="text-muted-foreground">{t("contact_body")}</p>
                     <div className="grid gap-1 text-sm text-foreground/90">
                       <p><span className="font-black">{t("f_name_label")}: </span>{t("aleksandra_bech_name")}</p>
-                      <p><span className="font-black">{t("contact_email_label")}: </span><a className="text-primary underline underline-offset-4" href={`mailto:${t("contact_email_value")}`}>{t("contact_email_value")}</a></p>
+                      <p><span className="font-black">{t("contact_email_label")}: </span><a className="text-secondary underline underline-offset-4" href={`mailto:${t("contact_email_value")}`}>{t("contact_email_value")}</a></p>
                       <p><span className="font-black">{t("contact_lang_label")}: </span>{t("contact_lang_value")}</p>
                     </div>
                     <div className="grid gap-2">
                       <p className="text-sm font-black uppercase tracking-wide text-foreground/90">{t("contact_expect_title")}</p>
-                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_1")}</p>
-                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_2")}</p>
-                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{t("contact_expect_3")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />{t("contact_expect_1")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />{t("contact_expect_2")}</p>
+                      <p className="flex items-start gap-2 text-sm text-muted-foreground"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />{t("contact_expect_3")}</p>
                     </div>
                   </aside>
                   <div>
@@ -318,8 +319,8 @@ export function ContactPageContent() {
                 <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
                   <aside className="grid content-start gap-5 border-border lg:border-r lg:pr-8">
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/[0.10]" aria-hidden="true">
-                        <GraduationCap className="h-6 w-6 text-secondary" strokeWidth={2} />
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]" aria-hidden="true">
+                        <GraduationCap className="h-6 w-6 text-primary" strokeWidth={2} />
                       </span>
                       <h2 className="text-xl font-black text-foreground md:text-2xl">{t("contact_choice_training")}</h2>
                     </div>

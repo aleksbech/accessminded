@@ -59,28 +59,28 @@ export function AuditsPageContent() {
                     {HERO_BULLETS.map((key) => (
                       <li key={key} className="flex items-start gap-3 text-foreground/90">
                         <span
-                          className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/[0.14]"
+                          className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-secondary/30 bg-secondary/[0.14]"
                           aria-hidden="true"
                         >
-                          <Check className="h-3.5 w-3.5 text-primary" strokeWidth={3} />
+                          <Check className="h-3.5 w-3.5 text-secondary" strokeWidth={3} />
                         </span>
                         <span className="text-sm md:text-base">{t(key)}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <p className="text-sm font-bold text-primary">{t("audits_bilingual_note")}</p>
+                  <p className="text-sm font-bold text-secondary">{t("audits_bilingual_note")}</p>
 
                   <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
                     <a
                       href="/kontakt#contact-audits"
-                      className="inline-flex w-full items-center justify-center rounded-2xl border border-primary/45 bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 sm:w-auto"
+                      className="inline-flex w-full items-center justify-center rounded-2xl border border-secondary/45 bg-secondary px-6 py-3.5 text-sm font-black text-secondary-foreground transition-all hover:brightness-105 sm:w-auto"
                     >
                       {t("hero_cta_primary")}
                     </a>
                     <a
                       href="#process"
-                      className="inline-flex w-full items-center justify-center rounded-2xl border border-primary/55 bg-transparent px-6 py-3.5 text-sm font-black text-primary transition-colors hover:bg-primary/10 sm:w-auto"
+                      className="inline-flex w-full items-center justify-center rounded-2xl border border-secondary/55 bg-transparent px-6 py-3.5 text-sm font-black text-secondary transition-colors hover:bg-secondary/10 sm:w-auto"
                     >
                       {t("hero_cta_secondary")}
                     </a>
@@ -96,6 +96,7 @@ export function AuditsPageContent() {
                       fill
                       priority
                       className="object-cover"
+                      style={{ filter: "hue-rotate(28deg) saturate(1.08)" }}
                       sizes="(max-width: 1023px) 100vw, 50vw"
                     />
                     {/* desktop fade left */}
@@ -140,7 +141,7 @@ export function AuditsPageContent() {
               </h2>
               <a
                 href="/kontakt#contact-audits"
-                className="inline-flex w-full items-center justify-center rounded-2xl border border-primary/45 bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground transition-all hover:brightness-105 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-2xl border border-secondary/45 bg-secondary px-6 py-3.5 text-sm font-black text-secondary-foreground transition-all hover:brightness-105 sm:w-auto"
               >
                 {t("hero_cta_primary")}
               </a>
