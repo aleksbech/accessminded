@@ -90,14 +90,14 @@ export function GatewayHero() {
           className="pointer-events-none absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity"
           aria-hidden="true"
           style={{
-            backgroundImage: "radial-gradient(rgba(46,230,166,0.14) 1px, transparent 1px)",
-            backgroundSize: "22px 22px",
-            maskImage: "radial-gradient(circle at 65% 60%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
-            WebkitMaskImage: "radial-gradient(circle at 65% 60%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+            backgroundImage: "radial-gradient(rgba(90,170,255,0.16) 1px, transparent 1px)",
+            backgroundSize: "18px 18px",
+            maskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+            WebkitMaskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
           }}
         />
         <div
-          className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-secondary/15 blur-3xl opacity-40 transition-opacity group-hover:opacity-60"
+          className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-secondary/15 blur-3xl opacity-40 transition-opacity group-hover:opacity-60"
           aria-hidden="true"
         />
 

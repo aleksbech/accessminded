@@ -287,8 +287,23 @@ export function ContactPageContent() {
             </section>
 
             <section className="grid gap-6" aria-label="Contact forms">
-              <div id="contact-audits" className="scroll-mt-24 rounded-3xl border border-border bg-surface p-6 shadow-lg md:p-8">
-                <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+              <div id="contact-audits" className="group relative scroll-mt-24 overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-lg transition-all hover:shadow-xl md:p-8">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-20 transition-opacity group-hover:opacity-30"
+                  aria-hidden="true"
+                  style={{
+                    backgroundImage: "radial-gradient(rgba(90,170,255,0.16) 1px, transparent 1px)",
+                    backgroundSize: "18px 18px",
+                    maskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                    WebkitMaskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-secondary/15 opacity-40 blur-3xl transition-opacity group-hover:opacity-60"
+                  aria-hidden="true"
+                />
+
+                <div className="relative z-10 grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
                   <aside className="grid content-start gap-5 border-border lg:border-r lg:pr-8">
                     <div className="flex items-center gap-3">
                       <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/[0.10]" aria-hidden="true">
@@ -315,8 +330,23 @@ export function ContactPageContent() {
                 </div>
               </div>
 
-              <div id="contact-training" className="scroll-mt-24 rounded-3xl border border-border bg-surface p-6 shadow-lg md:p-8">
-                <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+              <div id="contact-training" className="group relative scroll-mt-24 overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-lg transition-all hover:shadow-xl md:p-8">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-20 transition-opacity group-hover:opacity-30"
+                  aria-hidden="true"
+                  style={{
+                    backgroundImage: "radial-gradient(rgba(46,230,166,0.14) 1px, transparent 1px)",
+                    backgroundSize: "18px 18px",
+                    maskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                    WebkitMaskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-primary/15 opacity-40 blur-3xl transition-opacity group-hover:opacity-60"
+                  aria-hidden="true"
+                />
+
+                <div className="relative z-10 grid gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
                   <aside className="grid content-start gap-5 border-border lg:border-r lg:pr-8">
                     <div className="flex items-center gap-3">
                       <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary/25 bg-primary/[0.10]" aria-hidden="true">

@@ -52,10 +52,25 @@ export function AboutPageContent() {
           <div className="grid gap-12 md:grid-cols-2 md:items-stretch">
             {/* Aleksandra Bech - Audits */}
             <section
-              className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-lg"
+              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-lg transition-all hover:shadow-xl"
               aria-labelledby="bech-title"
             >
-              <div className="flex h-full flex-col gap-6 p-6 md:gap-6 md:p-10">
+              <div
+                className="pointer-events-none absolute inset-0 opacity-20 transition-opacity group-hover:opacity-30"
+                aria-hidden="true"
+                style={{
+                  backgroundImage: "radial-gradient(rgba(90,170,255,0.16) 1px, transparent 1px)",
+                  backgroundSize: "18px 18px",
+                  maskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                  WebkitMaskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                }}
+              />
+              <div
+                className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-secondary/15 opacity-40 blur-3xl transition-opacity group-hover:opacity-60"
+                aria-hidden="true"
+              />
+
+              <div className="relative z-10 flex h-full flex-col gap-6 p-6 md:gap-6 md:p-10">
                 {/* Image */}
                 <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-secondary/55" style={{ aspectRatio: "3 / 4" }}>
                   <Image
@@ -117,10 +132,25 @@ export function AboutPageContent() {
 
             {/* Aleksandra Migus - Training */}
             <section
-              className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-lg"
+              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-lg transition-all hover:shadow-xl"
               aria-labelledby="migus-title"
             >
-              <div className="flex h-full flex-col gap-6 p-6 md:gap-6 md:p-10">
+              <div
+                className="pointer-events-none absolute inset-0 opacity-20 transition-opacity group-hover:opacity-30"
+                aria-hidden="true"
+                style={{
+                  backgroundImage: "radial-gradient(rgba(46,230,166,0.14) 1px, transparent 1px)",
+                  backgroundSize: "18px 18px",
+                  maskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                  WebkitMaskImage: "radial-gradient(circle at 35% 40%, rgba(0,0,0,1), rgba(0,0,0,0) 65%)",
+                }}
+              />
+              <div
+                className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-primary/15 opacity-40 blur-3xl transition-opacity group-hover:opacity-60"
+                aria-hidden="true"
+              />
+
+              <div className="relative z-10 flex h-full flex-col gap-6 p-6 md:gap-6 md:p-10">
                 {/* Image */}
                 <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-primary/55" style={{ aspectRatio: "3 / 4" }}>
                   <Image
