@@ -26,7 +26,7 @@ export function ServicesSection() {
       className="scroll-mt-24"
       aria-labelledby="services-title"
     >
-      <div className="rounded-3xl border border-border bg-surface p-6 shadow-lg md:p-10">
+      <div className="rounded-3xl border border-border bg-background p-6 shadow-lg md:p-10">
         <h2
           id="services-title"
           className="mb-2 text-xl font-black tracking-tight md:text-2xl"

@@ -40,7 +40,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     trust_1: "Certyfikowany audyt WCAG 2.2",
     trust_2: "Raport z priorytetami wdrożeń",
     trust_3: "Współpraca PL / EN",
-    trust_4: "Wsparcie od audytu po reaudyt",
+    trust_4: "Wsparcie od audytu po re-audyt",
 
     services_title: "Usługi: Audyt i re-audyt dostępności",
     services_sub: "Dostępność poprawia się w dwóch krokach: najpierw audyt, który pokazuje bariery i sposób ich naprawy, a następnie re-audyt, który sprawdza wprowadzone zmiany.",
@@ -60,7 +60,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     step1_title: "Zakres i cele",
     step1_desc: "Na początku ustalamy, co dokładnie audytujemy, jakie są priorytety i gdzie mogą pojawiać się największe bariery.",
     step2_title: "Audyt",
-    step2_desc: "Przechodzę przez aplikację krok po kroku — manualnie i z pomocą narzędzi.",
+    step2_desc: "Przechodzę przez aplikację krok po kroku - manualnie i z pomocą narzędzi.",
     step3_title: "Raport + omówienie",
     step3_desc: "Dostajesz konkretne wnioski i przykłady rozwiązań. Razem ustalamy, co warto wdrożyć najpierw.",
     step4_title: "Reaudyt",
@@ -71,11 +71,11 @@ export const dict: Record<Lang, Record<string, string>> = {
     wcag_callout: "Najpierw usuwamy bariery, ktore realnie blokuja uzytkownikow.",
 
     about_title: "Kilka słów o mnie",
-    about_body: "Zajmuję się audytami dostępności stron i aplikacji zgodnie ze standardem WCAG. Pomagam zespołom identyfikować bariery, które utrudniają korzystanie z produktu osobom z różnymi potrzebami.\n\nW audytach skupiam się na praktyce — wskazuję realne problemy i proponuję rozwiązania, które można wdrożyć w produkcie. Zależy mi, aby dostępność była naturalną częścią procesu tworzenia produktu, a nie tylko formalnym wymaganiem.",
+    about_body: "Zajmuję się audytami dostępności stron i aplikacji zgodnie ze standardem WCAG. Pomagam zespołom identyfikować bariery, które utrudniają korzystanie z produktu osobom z różnymi potrzebami.\n\nW audytach skupiam się na praktyce - wskazuję realne problemy i proponuję rozwiązania, które można wdrożyć w produkcie. Zależy mi, aby dostępność była naturalną częścią procesu tworzenia produktu, a nie tylko formalnym wymaganiem.",
     about_points_title: "Dlaczego warto ze mną pracować?",
     about_point_1: "Ponad 6 lat doświadczenia w testowaniu oprogramowania",
     about_point_2: "Praktyczne rekomendacje i jasne priorytety",
-    about_point_3: "Dwujęzyczna współpraca — konsultacje PL / EN",
+    about_point_3: "Dwujęzyczna współpraca - konsultacje PL / EN",
     about_point_4: "Szkolenia: TestArmy Testy dostępności oraz Audytowanie dostępności stron internetowych zgodnie z WCAG",
     about_point_5: "Praktyczne doświadczenie w przeprowadzaniu audytów dostępności",
     about_cta_contact: "Napisz do mnie",
@@ -271,7 +271,7 @@ export const dict: Record<Lang, Record<string, string>> = {
     
     audits_cta_quote: "Zamów offertę",
     audits_contact_lead: "Zainteresowany audytem? Napisz do nas z opisem Twojego projektu.",
-    audits_bilingual_note: "Audyty dostępne w języku polskim i angielskim",
+    audits_bilingual_note: "Audyty dostępne w języku polskim i angielskim.",
 
     // Contact page - choice first
     contact_choice_title: "Kontakt",
@@ -499,7 +499,7 @@ export const dict: Record<Lang, Record<string, string>> = {
       "Users have the right to access their data, rectify it, erase it, or restrict its processing.",
 
     // About page - dual profiles
-    about_page_title: "About us — digital accessibility experts",
+    about_page_title: "About us - digital accessibility experts",
     about_page_intro: "Access Minded is a team of two specialists dedicated to digital inclusion. We help you build digital products that are WCAG-compliant, inclusive, and user-friendly for everyone.",
     
     aleksandra_migus_name: "Aleksandra Migus",
@@ -514,11 +514,11 @@ export const dict: Record<Lang, Record<string, string>> = {
     
     aleksandra_bech_name: "Aleksandra Bech",
     aleksandra_bech_role: "Audit Specialist",
-    aleksandra_bech_bio: "I conduct accessibility audits for websites and applications in line with WCAG standards. I help teams identify barriers that make it difficult for people with different needs to use digital products.\n\nMy audits focus on practical outcomes — I highlight real issues and propose solutions that can be implemented in the product. My goal is to make accessibility a natural part of the development process, not just a formal requirement.",
+    aleksandra_bech_bio: "I conduct accessibility audits for websites and applications in line with WCAG standards. I help teams identify barriers that make it difficult for people with different needs to use digital products.\n\nMy audits focus on practical outcomes - I highlight real issues and propose solutions that can be implemented in the product. My goal is to make accessibility a natural part of the development process, not just a formal requirement.",
     aleksandra_bech_points_title: "Why work with me?",
     aleksandra_bech_point_1: "Over 6 years of experience in software testing",
     aleksandra_bech_point_2: "Practical recommendations and clear priorities",
-    aleksandra_bech_point_3: "Bilingual collaboration — consultations in PL / EN",
+    aleksandra_bech_point_3: "Bilingual collaboration - consultations in PL / EN",
     aleksandra_bech_point_4: "Training: TestArmy Accessibility Testing and Auditing Website Accessibility according to WCAG",
     aleksandra_bech_cta: "Request audit",
 
@@ -661,6 +661,6 @@ export const dict: Record<Lang, Record<string, string>> = {
     audit_website_full_desc: "Complete accessibility analysis of your website according to WCAG 2.2 AA.",
     audit_reaudit_title: "Re-audit",
     audit_reaudit_desc: "Verification of implemented fixes and update of previous report.",
-    audits_bilingual_note: "Audits available in Polish and English",
+    audits_bilingual_note: "Audits available in Polish and English.",
   }
 }

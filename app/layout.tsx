@@ -49,6 +49,9 @@ export default async function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
+        <div className="aurora-bg" aria-hidden="true">
+          <span className="aurora-blob-3" />
+        </div>
         {children}
         <Analytics />
       </body>

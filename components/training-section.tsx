@@ -137,7 +137,7 @@ export function TrainingSection() {
                 </p>
             </div>
 
-            <p className="mt-8 flex items-center gap-2 text-xs italic text-muted-foreground/70">
+            <p className="mt-8 flex items-center gap-2 text-xs italic text-muted-foreground">
               <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-[10px] font-black not-italic text-muted-foreground">
                 PL
               </span>

@@ -14,7 +14,7 @@ export function SiteFooter() {
             &copy; {year} {t("footer_copy")}
           </span>
         </div>
-        <p className="text-center text-xs text-muted-foreground/70 md:text-right">
+          <p className="text-center text-xs text-muted-foreground md:text-right">
           {t("footer_a11y")}
         </p>
       </div>

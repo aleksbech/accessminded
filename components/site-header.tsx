@@ -82,7 +82,7 @@ export function SiteHeader() {
           aria-label="Access Minded — home"
         >
           <Image
-            src="/images/accessminded-logo.svg"
+            src="/images/accessminded-logo.svg?v=3"
             alt="Access Minded logo"
             width={200}
             height={50}

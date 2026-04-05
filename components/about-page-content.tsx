@@ -40,7 +40,7 @@ export function AboutPageContent() {
         <div className="mx-auto max-w-[1200px] px-4 py-8 md:px-6 lg:px-8">
           {/* Page header */}
           <section className="mb-14 py-6 text-center md:mb-20 md:py-10">
-            <h1 className="mx-auto mb-5 max-w-4xl bg-gradient-to-r from-secondary via-primary to-secondary bg-clip-text text-3xl font-black tracking-tight text-transparent md:text-5xl">
+            <h1 className="mx-auto mb-5 max-w-4xl bg-gradient-to-r from-secondary via-primary to-secondary bg-clip-text pb-2 text-3xl font-black tracking-tight text-transparent md:text-5xl">
               {t("about_page_title")}
             </h1>
             <p className="mx-auto max-w-3xl text-lg leading-[1.6] text-muted-foreground md:text-xl">

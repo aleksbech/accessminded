@@ -9,7 +9,7 @@ export default async function Home() {
 
   return (
     <LangProvider initialLang={initialLang}>
-      <div id="top">
+      <div id="top" className="relative z-[1]">
         <PageContent />
       </div>
     </LangProvider>

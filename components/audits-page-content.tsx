@@ -88,31 +88,16 @@ export function AuditsPageContent() {
                 </div>
 
                 {/* Right: blended illustration */}
-                <div className="relative flex flex-col items-center h-64 sm:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-1/2">
-                  <div className="relative h-full w-full overflow-hidden lg:rounded-none" aria-hidden="true">
+                <div className="relative flex flex-col items-center h-64 sm:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[60%]">
+                  <div className="audits-hero-image-wrap relative h-full w-full overflow-hidden lg:rounded-none" aria-hidden="true">
                     <Image
                       src="/images/hero-wcag-audit.jpg"
                       alt=""
                       fill
                       priority
                       className="object-cover"
-                      style={{ filter: "hue-rotate(28deg) saturate(1.08)" }}
+                      style={{ filter: "hue-rotate(6deg) saturate(1.12)" }}
                       sizes="(max-width: 1023px) 100vw, 50vw"
-                    />
-                    {/* desktop fade left */}
-                    <div
-                      className="pointer-events-none absolute inset-0 hidden lg:block"
-                      style={{ background: "linear-gradient(to right, var(--background) 0%, transparent 40%)" }}
-                    />
-                    {/* mobile fade bottom */}
-                    <div
-                      className="pointer-events-none absolute inset-x-0 bottom-0 h-24 lg:hidden"
-                      style={{ background: "linear-gradient(to bottom, transparent 0%, var(--background) 100%)" }}
-                    />
-                    {/* mobile fade top */}
-                    <div
-                      className="pointer-events-none absolute inset-0 lg:hidden"
-                      style={{ background: "linear-gradient(to bottom, var(--background) 0%, transparent 40%)" }}
                     />
                   </div>
                 </div>

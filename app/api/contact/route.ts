@@ -75,9 +75,32 @@ const contactSchema = z.object({
     name: z.string().min(1).max(200),
     email: z.string().email().max(320),
     message: z.string().min(1).max(5000),
-    url: z.string().url().max(2000).or(z.literal("")),
+    url: z
+        .string()
+        .max(2000)
+        .refine((value) => {
+            if (!value) return true
+            try {
+                const parsed = new URL(value)
+                return parsed.protocol === "http:" || parsed.protocol === "https:"
+            } catch {
+                return false
+            }
+        }, "Invalid URL")
+        .or(z.literal("")),
     service: z.enum(["audit", "reaudit", "training", "training-notify"]),
 })
+
+const MAX_CONTENT_LENGTH = 25_000
+
+function json(data: unknown, status = 200) {
+    return Response.json(data, {
+        status,
+        headers: {
+            "Cache-Control": "no-store",
+        },
+    })
+}
 
 function isAllowedOrigin(origin: string | null): boolean {
     if (!origin) return false
@@ -89,7 +112,20 @@ export async function POST(req: Request) {
     try {
         const origin = req.headers.get("origin")
         if (!isAllowedOrigin(origin)) {
-            return Response.json({ error: "Forbidden" }, { status: 403 })
+            return json({ error: "Forbidden" }, 403)
+        }
+
+        const contentType = req.headers.get("content-type") || ""
+        if (!contentType.toLowerCase().includes("application/json")) {
+            return json({ error: "Unsupported Media Type" }, 415)
+        }
+
+        const contentLengthHeader = req.headers.get("content-length")
+        if (contentLengthHeader) {
+            const contentLength = Number(contentLengthHeader)
+            if (Number.isFinite(contentLength) && contentLength > MAX_CONTENT_LENGTH) {
+                return json({ error: "Payload too large" }, 413)
+            }
         }
 
         const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
@@ -97,17 +133,17 @@ export async function POST(req: Request) {
         if (ratelimit) {
             const { success } = await ratelimit.limit(ip)
             if (!success) {
-                return Response.json({ error: "Too many requests" }, { status: 429 })
+                return json({ error: "Too many requests" }, 429)
             }
         } else if (isDevRateLimited(ip)) {
-            return Response.json({ error: "Too many requests" }, { status: 429 })
+            return json({ error: "Too many requests" }, 429)
         }
 
         const body = await req.json()
         const result = contactSchema.safeParse(body)
 
         if (!result.success) {
-            return Response.json({ error: "Invalid input" }, { status: 400 })
+            return json({ error: "Invalid input" }, 400)
         }
 
         const { name, email, message, url, service } = result.data
@@ -143,12 +179,12 @@ export async function POST(req: Request) {
 
         if (error) {
             console.error(error)
-            return Response.json({ error: "Email error" }, { status: 500 })
+            return json({ error: "Email error" }, 500)
         }
 
-        return Response.json({ success: true })
+        return json({ success: true })
     } catch (error) {
         console.error(error)
-        return Response.json({ error: "Server error" }, { status: 500 })
+        return json({ error: "Server error" }, 500)
     }
 }
