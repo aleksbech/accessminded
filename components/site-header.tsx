@@ -72,6 +72,7 @@ export function SiteHeader() {
       style={{
         backdropFilter: "blur(12px)",
         background: "rgba(11,18,32,0.88)",
+        paddingTop: "env(safe-area-inset-top)",
       }}
     >
       <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-2 px-4 py-4 md:gap-4 md:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8">
